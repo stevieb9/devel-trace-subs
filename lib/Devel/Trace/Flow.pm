@@ -99,21 +99,48 @@ __END__
 =head1 NAME
 
 Devel::Trace::Flow - Generate, track, store and print code flow and stack
-traces
+traces.
 
 
 =head1 SYNOPSIS
 
+    use Devel::Trace::Flow qw(trace trace_dump);
 
-    use Devel::Trace::Flow;
+    # add a trace() call to the top of all your subs
 
-    ...
+    trace();
+
+    # then from anywhere, dump the output
+
+    trace_dump('stack'); # prints with Dumper the stack trace
+
+    trace_dump('flow'); # prints with Dumper the code flow
 
 =head1 EXPORT
 
+    C<trace, trace_dump>
+
 =head1 FUNCTIONS
 
-=head2 function1
+=head2 C<trace>
+
+Parameters: None
+
+Puts the call onto the stack trace. Call it in scalar context to retrieve the
+data structure as it currently sits.
+
+
+=head2 C<trace_dump>
+
+Parameters: C<'stack'>, C<'flow'>
+
+If C<stack> is passed in, we'll use C<Data::Dumper> to print out the
+stack flow information to C<STDOUT>.
+
+If C<flow> is passed in, we'll print with C<Data::Dumper> the code flow
+information.
+
+If no parameters are passed in, we'll dump the entire structure.
 
 =cut
 
@@ -123,9 +150,11 @@ Steve Bertrand, C<< <steveb at cpan.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-devel-trace-flow at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Flow>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests to C<bug-devel-trace-flow at
+rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Flow>.  I will
+be notified, and then you'll automatically be notified of progress on your
+bug as I make changes.
 
 
 =head1 SUPPORT
