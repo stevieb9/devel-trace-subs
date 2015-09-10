@@ -16,7 +16,7 @@ our @EXPORT_OK = qw(
 
 our $VERSION = '0.01';
 
-$SIG{INT} = sub { 'this ensures END runs' };
+$SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
 sub trace {
 
@@ -24,9 +24,7 @@ sub trace {
 
     my $data = _store();
 
-    my $flow_count = ++$data->{flow}{flow_count};
-
-    $data->{flow}{data}{$flow_count} = (caller(1))[3] || '-';
+    push @{$data->{flow}}, (caller(1))[3];
 
     push @{$data->{stack}}, {
         called   => (caller(1))[3] || '-',
@@ -39,6 +37,10 @@ sub trace {
     _store($data);
 }
 sub trace_dump {
+
+    if (! $ENV{DTF_PID}){
+        die "Can't call trace_dump() without calling trace()\n";
+    }
 
     my $want = shift;
 
@@ -77,7 +79,7 @@ sub _store {
         $struct = retrieve($store);
     }
     else {
-        $struct = {flow_count => 0,};
+        $struct = {};
     }
 
     return $struct if ! $data;
@@ -88,9 +90,8 @@ sub _store {
 
 }
 
-
 END {
-    unlink $ENV{DTF_STORE};
+    unlink $ENV{DTF_STORE} if $ENV{DTF_STORE};
 }
 
 __END__

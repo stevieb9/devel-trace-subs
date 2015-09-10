@@ -3,9 +3,11 @@ use strict;
 use warnings;
 
 use Devel::Trace::Flow qw(trace trace_dump);
+use Devel::Examine::Subs;
 
 one();
-trace_dump('flow');
+
+trace_dump('stack');
 
 sub one {
     trace();
@@ -15,6 +17,7 @@ sub one {
 
 sub two {
     trace();
+    my $des = Devel::Examine::Subs->new(file => 'examples/building.pl');
     three();
     print 2;
 }
