@@ -7,7 +7,7 @@ use Devel::Examine::Subs;
 
 one();
 
-trace_dump('flow');
+trace_dump('stack');
 
 sub one {
     trace();
