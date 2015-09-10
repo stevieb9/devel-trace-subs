@@ -2,18 +2,103 @@ package Devel::Trace::Flow;
 use 5.006;
 use strict;
 use warnings;
+#use diagnostics;
+
+use Data::Dumper;
+use Exporter;
+use Storable;
+
+our @ISA = qw(Exporter);
+our @EXPORT_OK = qw(
+                    trace
+                    trace_dump
+                );
+
+our $VERSION = '0.01';
+
+$SIG{INT} = sub { 'this ensures END runs' };
+
+sub trace {
+
+    _env();
+
+    my $data = _store();
+
+    my $flow_count = ++$data->{flow}{flow_count};
+
+    $data->{flow}{data}{$flow_count} = (caller(1))[3] || '-';
+
+    push @{$data->{stack}}, {
+        called   => (caller(1))[3] || '-',
+        package  => (caller(1))[0] || '-',
+        sub      => (caller(2))[3] || '-',
+        filename => (caller(1))[1],
+        line     => (caller(1))[2],
+    };
+
+    _store($data);
+}
+sub trace_dump {
+
+    my $want = shift;
+
+    my $data = _store();
+
+    if ($want eq 'stack'){
+        print Dumper $data->{stack};
+    }
+    if ($want eq 'flow'){
+        print Dumper $data->{flow};
+    }
+    if (! $want){
+        print Dumper $data;
+    }
+}
+sub _env {
+
+    my $pid = $$;
+    $ENV{DTF_PID} = $pid;
+
+    return $pid;
+}
+
+sub _store {
+
+    my $data = shift;
+
+    my $pid = $ENV{DTF_PID};
+    my $store = "DTF_" . join('_', ($pid x 3)) . ".dat";
+
+    $ENV{DTF_STORE} = $store;
+
+    my $struct;
+
+    if (-f $store){
+        $struct = retrieve($store);
+    }
+    else {
+        $struct = {flow_count => 0,};
+    }
+
+    return $struct if ! $data;
+
+    # append $data here to $struct
+
+    store($data, $store);
+
+}
+
+
+END {
+    unlink $ENV{DTF_STORE};
+}
+
+__END__
 
 =head1 NAME
 
-Devel::Trace::Flow - Generate, track, store and print code flow and stack traces
-
-=head1 VERSION
-
-Version 0.01
-
-=cut
-
-our $VERSION = '0.01';
+Devel::Trace::Flow - Generate, track, store and print code flow and stack
+traces
 
 
 =head1 SYNOPSIS

@@ -10,4 +10,3 @@ BEGIN {
     use_ok( 'Devel::Trace::Flow' ) || print "Bail out!\n";
 }
 
-diag( "Testing Devel::Trace::Flow $Devel::Trace::Flow::VERSION, Perl $], $^X" );
