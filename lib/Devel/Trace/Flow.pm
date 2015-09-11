@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Data::Dumper;
+use Devel::Examine::Subs;
 use Devel::Trace::Flow::HTML qw(html);
 use Devel::Trace::Flow::Text qw(text);
 use Exporter;
@@ -13,6 +14,7 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
                     trace
                     trace_dump
+                    inject_trace
                 );
 
 our $VERSION = '0.02';
@@ -109,6 +111,29 @@ sub trace_dump {
             );
         }
     }
+}
+sub inject_trace {
+
+    my %p = @_;
+
+    my $file = $p{file};
+    my $copy = $p{copy};
+    my $include = $p{include};
+    my $exclude = $p{exclude};
+
+    my $des = Devel::Examine::Subs->new(
+                                        file => $file,
+                                        copy => $copy,
+                                        include => $include,
+                                        exclude => $exclude,
+                                        no_indent => 1,
+                                    );
+
+    $des->inject_after(
+        search => qr/sub\s+\w+\s+(?:\(.*?\)\s+)?\{/,
+        code => ["\ttrace();\n"],
+    );
+
 }
 sub _env {
 

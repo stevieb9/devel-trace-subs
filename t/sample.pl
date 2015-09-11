@@ -20,13 +20,6 @@ sub get {
     return $self->{greeting} || '';
 }
 
-package Two;
-
-sub new {
-    my $self = bless {}, shift;
-    return $self;
-}
-
 sub add {
     my $self = shift;
     $self->check;
@@ -34,13 +27,14 @@ sub add {
 }
 
 sub check {
+    my $self = shift;
     return 0 if ! $self->{undefined};
 }
 
 package main;
 
-my $two = Two->new;
+my $one = One->new;
 
-$two->add;
+$one->add;
 
-$two->{one}->set('hello, world!')
+$one->{one}->set('hello, world!')
