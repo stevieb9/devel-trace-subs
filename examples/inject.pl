@@ -5,8 +5,7 @@ use warnings;
 use Devel::Trace::Flow qw(inject_trace);
 
 my %params = (
-    file => 't/sample.pl',
-    copy => 't/sample_copy.pl',
+    file => '../devel-examine-subs/lib/Devel/Examine',
 );
 
 inject_trace(%params);

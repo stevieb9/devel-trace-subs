@@ -14,6 +14,10 @@ SYNOPSIS
         # then from anywhere (typically calling script), dump the output
     
         trace_dump();
+    
+        # automate the installation into a file (or all files in a directory)
+    
+        inject_trace(file => 'filename'); # or directory, or 'Module::Name'
 
 DESCRIPTION
 
@@ -27,13 +31,21 @@ DESCRIPTION
 
 EXPORT
 
-        C<trace, trace_dump>
+    None by default. See EXPORT_OK
+
+EXPORT_OK
+
+        C<trace, trace_dump, inject_trace>
 
 FUNCTIONS
 
  trace
 
     Parameters: None
+
+    Note: To completely disable tracing, set DTF_DISABLE_TRACE environment
+    variable to a true value from anywhere in the call stack (the calling
+    script is most effective).
 
     Puts the call onto the stack trace. Call it in scalar context to
     retrieve the data structure as it currently sits.
@@ -61,6 +73,9 @@ FUNCTIONS
 
     Automatically injects the necessary code into Perl files to facilitate
     stack tracing.
+
+    In addition to adding the appropriate use statement into each file, it
+    adds a trace(); call to all (or specified) subroutines.
 
     Parameters:
 

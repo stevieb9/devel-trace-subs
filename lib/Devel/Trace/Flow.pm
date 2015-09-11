@@ -23,6 +23,10 @@ $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
 sub trace {
 
+    # skip if disabled
+
+    return if $ENV{DTF_DISABLE_TRACE};
+
     _env();
 
     my $data = _store();
@@ -129,7 +133,7 @@ sub inject_trace {
                                         no_indent => 1,
                                     );
 
-    my $use = ['use Devel::Trace::Flow qw(trace trace_dump)'];
+    my $use = ['use Devel::Trace::Flow qw(trace trace_dump);'];
 
     $des->inject(inject_use => $use);
 
@@ -194,6 +198,10 @@ traces.
 
     trace_dump();
 
+    # automate the installation into a file (or all files in a directory)
+
+    inject_trace(file => 'filename'); # or directory, or 'Module::Name'
+
 =head1 DESCRIPTION
 
 This module facilitates keeping track of a project's code flow and stack
@@ -206,13 +214,21 @@ C<Module::Name>.
 
 =head1 EXPORT
 
-    C<trace, trace_dump>
+None by default. See L<EXPORT_OK>
+
+=head1 EXPORT_OK
+
+    C<trace, trace_dump, inject_trace>
 
 =head1 FUNCTIONS
 
 =head2 C<trace>
 
 Parameters: None
+
+Note: To completely disable tracing, set C<DTF_DISABLE_TRACE> environment
+variable to a true value from anywhere in the call stack (the calling script
+is most effective).
 
 Puts the call onto the stack trace. Call it in scalar context to retrieve the
 data structure as it currently sits.
