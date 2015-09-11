@@ -2,10 +2,10 @@ package Devel::Trace::Flow;
 use 5.006;
 use strict;
 use warnings;
-#use diagnostics;
 
 use Data::Dumper;
 use Devel::Trace::Flow::HTML qw(html);
+use Devel::Trace::Flow::Text qw(text);
 use Exporter;
 use Storable;
 
@@ -61,7 +61,7 @@ sub trace_dump {
             html(file => $file, want => $want, data => $data->{stack});
         }
         else {
-            print Dumper $data->{stack};
+            text(want => 'stack', data => $data->{stack}, file => $file);
         }
     }
     if ($want && $want eq 'flow'){
@@ -69,7 +69,7 @@ sub trace_dump {
             html(file => $file, want => $want, data => $data->{flow});
         }
         else {
-            print Dumper $data->{flow};
+            text(want => 'flow', data => $data->{flow}, file => $file);
         }
     }
     if (! $want){
@@ -77,7 +77,13 @@ sub trace_dump {
             html(file => $file, data => $data);
         }
         else {
-            print Dumper $data;
+            text(
+                data => {
+                    flow => $data->{flow},
+                    stack => $data->{stack}
+                },
+                file => $file
+            );
         }
     }
 }
@@ -108,8 +114,6 @@ sub _store {
     }
 
     return $struct if ! $data;
-
-    # append $data here to $struct
 
     store($data, $store);
 

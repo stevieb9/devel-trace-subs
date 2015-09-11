@@ -7,7 +7,7 @@ use Exporter;
 use HTML::Template;
 
 our @ISA = qw(Exporter);
-our @EXPORT_OK = qw( html );
+our @EXPORT_OK = qw(html);
 
 my (@stack_tpl, @flow_tpl, @all_tpl);
 
@@ -71,7 +71,6 @@ sub html {
             print $template->output;
         }
     }
-
 }
 
 BEGIN {
@@ -117,7 +116,8 @@ EOF
 
 <table id=error border=0 cellspacing=0>
 <TMPL_LOOP NAME=FLOW>
-    <tr><td><TMPL_VAR NAME=name></td>  <td>&nbsp;</td> <td><TMPL_VAR NAME=value></td></tr>
+    <tr><td><TMPL_VAR NAME=name></td>  <td>&nbsp;</td>
+    <td><TMPL_VAR NAME=value></td></tr>
 </TMPL_LOOP>
 
 </table>
@@ -139,7 +139,8 @@ EOF
 
 <table id=error border=0 cellspacing=0>
 <TMPL_LOOP NAME=FLOW>
-    <tr><td><TMPL_VAR NAME=name>:</td>  <td>&nbsp;</td> <td><TMPL_VAR NAME=value></td></tr>
+    <tr><td><TMPL_VAR NAME=name>:</td>
+    <td>&nbsp;</td> <td><TMPL_VAR NAME=value></td></tr>
 </TMPL_LOOP>
 
 </table>
@@ -150,11 +151,16 @@ EOF
 
 <table id=error border=0 cellspacing=0>
 <TMPL_LOOP NAME=STACK>
-        <tr><td>in:</td>  <td>&nbsp;</td> <td><TMPL_VAR NAME=in></td></tr>
-        <tr><td>sub:</td>  <td>&nbsp;</td> <td><TMPL_VAR NAME=sub></td></tr>
-        <tr><td>file:</td>    <td>&nbsp;</td> <td><TMPL_VAR NAME=filename></td></tr>
-	    <tr><td>line:</td>    <td>&nbsp;</td> <td><TMPL_VAR NAME=line></td></tr>
-        <tr><td>package:</td>   <td>&nbsp;</td> <td><TMPL_VAR NAME=package></td></tr>
+        <tr><td>in:</td>  <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=in></td></tr>
+        <tr><td>sub:</td>  <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=sub></td></tr>
+        <tr><td>file:</td>    <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=filename></td></tr>
+	    <tr><td>line:</td>    <td>&nbsp;</td>
+	    <td><TMPL_VAR NAME=line></td></tr>
+        <tr><td>package:</td>   <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=package></td></tr>
         <tr><td colspan=3>&nbsp;</td></tr>
 </TMPL_LOOP>
 
