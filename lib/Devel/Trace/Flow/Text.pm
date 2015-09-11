@@ -32,7 +32,10 @@ sub text {
             ) || die $template->error;
         }
         else {
-            $template->process(\$stack_tpl, {stack => $data});
+            $template->process(
+                \$stack_tpl,
+                {stack => $data}
+            );
         }
     }
     elsif ($want && $want eq 'flow') {
@@ -48,7 +51,10 @@ sub text {
             ) || die $template->error;
         }
         else {
-            $template->process(\$flow_tpl, {flow => $data});
+            $template->process(
+                \$flow_tpl,
+                {flow => $data}
+            );
         }
     }
     else {
@@ -77,7 +83,7 @@ $flow_tpl = <<EOF;
 
 Code flow:
 
-[% FOREACH entry IN flow %]
+[% FOREACH entry IN flow -%]
     [% entry.name %]: [% entry.value %]
 [% END %]
 EOF
@@ -98,7 +104,8 @@ EOF
 $all_tpl = <<EOF;
 
 Code flow:
-[% FOREACH entry IN flow %]
+
+[% FOREACH entry IN flow -%]
     [% entry.name %]: [% entry.value %]
 [% END %]
 

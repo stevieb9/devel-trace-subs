@@ -58,23 +58,42 @@ sub trace_dump {
 
     if ($want && $want eq 'stack'){
         if ($out_type eq 'html') {
-            html(file => $file, want => $want, data => $data->{stack});
+            html(
+                file => $file,
+                want => $want,
+                data => $data->{stack}
+            );
         }
         else {
-            text(want => 'stack', data => $data->{stack}, file => $file);
+            text(
+                want => 'stack',
+                data => $data->{stack},
+                file => $file
+            );
         }
     }
     if ($want && $want eq 'flow'){
         if ($out_type eq 'html') {
-            html(file => $file, want => $want, data => $data->{flow});
+            html(
+                file => $file,
+                want => $want,
+                data => $data->{flow}
+            );
         }
         else {
-            text(want => 'flow', data => $data->{flow}, file => $file);
+            text(
+                want => 'flow',
+                data => $data->{flow},
+                file => $file
+            );
         }
     }
     if (! $want){
         if ($out_type eq 'html') {
-            html(file => $file, data => $data);
+            html(
+                file => $file,
+                data => $data
+            );
         }
         else {
             text(
