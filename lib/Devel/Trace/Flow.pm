@@ -5,6 +5,7 @@ use warnings;
 #use diagnostics;
 
 use Data::Dumper;
+use Devel::Trace::Flow::HTML qw(html);
 use Exporter;
 use Storable;
 
@@ -24,14 +25,19 @@ sub trace {
 
     my $data = _store();
 
-    push @{$data->{flow}}, (caller(1))[3];
+    my $flow_count = ++$ENV{DTF_FLOW_COUNT};
+
+    push @{$data->{flow}}, {
+                            name => $flow_count,
+                            value => (caller(1))[3] || 'main()'
+                        };
 
     push @{$data->{stack}}, {
-        called   => (caller(1))[3] || '-',
+        in       => (caller(1))[3] || '-',
         package  => (caller(1))[0] || '-',
         sub      => (caller(2))[3] || '-',
-        filename => (caller(1))[1],
-        line     => (caller(1))[2],
+        filename => (caller(1))[1] || '-',
+        line     => (caller(1))[2] || '-',
     };
 
     _store($data);
@@ -42,18 +48,37 @@ sub trace_dump {
         die "Can't call trace_dump() without calling trace()\n";
     }
 
-    my $want = shift;
+    my %p = @_;
+
+    my $want = $p{want};
+    my $out_type = $p{type};
+    my $file = $p{file};
 
     my $data = _store();
 
-    if ($want eq 'stack'){
-        print Dumper $data->{stack};
+    if ($want && $want eq 'stack'){
+        if ($out_type eq 'html') {
+            html(file => $file, want => $want, data => $data->{stack});
+        }
+        else {
+            print Dumper $data->{stack};
+        }
     }
-    if ($want eq 'flow'){
-        print Dumper $data->{flow};
+    if ($want && $want eq 'flow'){
+        if ($out_type eq 'html') {
+            html(file => $file, want => $want, data => $data->{flow});
+        }
+        else {
+            print Dumper $data->{flow};
+        }
     }
     if (! $want){
-        print Dumper $data;
+        if ($out_type eq 'html') {
+            html(file => $file, data => $data);
+        }
+        else {
+            print Dumper $data;
+        }
     }
 }
 sub _env {
