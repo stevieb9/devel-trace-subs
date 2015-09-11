@@ -129,11 +129,14 @@ sub inject_trace {
                                         no_indent => 1,
                                     );
 
+    my $use = ['use Devel::Trace::Flow qw(trace trace_dump)'];
+
+    $des->inject(inject_use => $use);
+
     $des->inject_after(
         search => qr/sub\s+\w+\s+(?:\(.*?\)\s+)?\{/,
         code => ["\ttrace();\n"],
     );
-
 }
 sub _env {
 
@@ -239,6 +242,9 @@ for writing.
 
 Automatically injects the necessary code into Perl files to facilitate stack
 tracing.
+
+In addition to adding the appropriate C<use> statement into each file, it
+adds a C<trace();> call to all (or specified) subroutines.
 
 Parameters:
 

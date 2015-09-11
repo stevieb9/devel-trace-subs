@@ -1,6 +1,13 @@
 #!/usr/bin/perl
+
 use strict;
 use warnings;
+
+use Devel::Trace::Flow qw(trace trace_dump);
+use Devel::Trace::Flow qw(trace trace_dump);
+use Devel::Trace::Flow qw(trace trace_dump);
+use Devel::Trace::Flow qw(trace trace_dump);
+use Devel::Trace::Flow qw(trace trace_dump);
 
 package One;
 
