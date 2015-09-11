@@ -15,7 +15,7 @@ our @EXPORT_OK = qw(
                     trace_dump
                 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
@@ -41,6 +41,10 @@ sub trace {
     };
 
     _store($data);
+
+    if (defined wantarray){
+        return $data;
+    }
 }
 sub trace_dump {
 
@@ -158,11 +162,19 @@ traces.
 
     trace();
 
-    # then from anywhere, dump the output
+    # then from anywhere (typically calling script), dump the output
 
-    trace_dump('stack'); # prints with Dumper the stack trace
+    trace_dump();
 
-    trace_dump('flow'); # prints with Dumper the code flow
+=head1 DESCRIPTION
+
+This module facilitates keeping track of a project's code flow and stack
+trace information in calls between subroutines.
+
+Optionally, you can use this module to automatically inject the appropriate
+C<trace()> calls into some or all subs in individual files, all Perl files
+within a directory structure, or even in production files by specifying its
+C<Module::Name>.
 
 =head1 EXPORT
 
@@ -180,15 +192,24 @@ data structure as it currently sits.
 
 =head2 C<trace_dump>
 
-Parameters: C<'stack'>, C<'flow'>
+Dumps the output of the collected data.
 
-If C<stack> is passed in, we'll use C<Data::Dumper> to print out the
-stack flow information to C<STDOUT>.
+All of the following parameters are optional.
 
-If C<flow> is passed in, we'll print with C<Data::Dumper> the code flow
-information.
+C<want =E<gt> 'string'>, C<type =E<gt> 'html'>,
+C<file =E<gt> 'file.ext'>
 
-If no parameters are passed in, we'll dump the entire structure.
+C<want>: Takes either C<'flow'> or C<'stack'>, and will output the respective
+data collection. If this parameter is omitted, both code flow and stack trace
+information is dumped.
+
+C<type>: Has only a single value, C<'html>. This will dump the output in HTML
+format.
+
+C<file>: Takes the name of a file as a parameter. The dump will write output
+to the file specified. The program will C<die> if the file can not be opened
+for writing.
+
 
 =cut
 

@@ -9,6 +9,8 @@ use HTML::Template;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(html);
 
+our $VERSION = '0.02';
+
 my (@stack_tpl, @flow_tpl, @all_tpl);
 
 sub html {
@@ -89,11 +91,16 @@ BEGIN {
 
 <table id=error border=0 cellspacing=0>
 <TMPL_LOOP NAME=STACK>
-        <tr><td>in:</td>  <td>&nbsp;</td> <td><TMPL_VAR NAME=in></td></tr>
-        <tr><td>sub:</td>  <td>&nbsp;</td> <td><TMPL_VAR NAME=sub></td></tr>
-        <tr><td>file:</td>    <td>&nbsp;</td> <td><TMPL_VAR NAME=filename></td></tr>
-	    <tr><td>line:</td>    <td>&nbsp;</td> <td><TMPL_VAR NAME=line></td></tr>
-        <tr><td>package:</td>   <td>&nbsp;</td> <td><TMPL_VAR NAME=package></td></tr>
+        <tr><td>in:</td>  <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=in></td></tr>
+        <tr><td>sub:</td>  <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=sub></td></tr>
+        <tr><td>file:</td>    <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=filename></td></tr>
+	    <tr><td>line:</td>    <td>&nbsp;</td>
+	    <td><TMPL_VAR NAME=line></td></tr>
+        <tr><td>package:</td>   <td>&nbsp;</td>
+        <td><TMPL_VAR NAME=package></td></tr>
         <tr><td colspan=3>&nbsp;</td></tr>
 </TMPL_LOOP>
 

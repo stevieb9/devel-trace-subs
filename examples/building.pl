@@ -9,9 +9,9 @@ one();
 two();
 
 trace_dump(
-    want => 'flow',
-#    type => 'html',
-#    file => '/home/steve02/Desktop/index.html',
+#    want => 'flow',
+    type => 'html',
+    file => '/home/steve02/Desktop/index.html',
 );
 
 sub one {

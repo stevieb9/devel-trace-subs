@@ -1,23 +1,61 @@
 NAME
 
     Devel::Trace::Flow - Generate, track, store and print code flow and
-    stack traces
-
-VERSION
-
-    Version 0.01
+    stack traces.
 
 SYNOPSIS
 
-        use Devel::Trace::Flow;
+        use Devel::Trace::Flow qw(trace trace_dump);
     
-        ...
+        # add a trace() call to the top of all your subs
+    
+        trace();
+    
+        # then from anywhere (typically calling script), dump the output
+    
+        trace_dump();
+
+DESCRIPTION
+
+    This module facilitates keeping track of a project's code flow and
+    stack trace information in calls between subroutines.
+
+    Optionally, you can use this module to automatically inject the
+    appropriate trace() calls into some or all subs in individual files,
+    all Perl files within a directory structure, or even in production
+    files by specifying its Module::Name.
 
 EXPORT
 
+        C<trace, trace_dump>
+
 FUNCTIONS
 
- function1
+ trace
+
+    Parameters: None
+
+    Puts the call onto the stack trace. Call it in scalar context to
+    retrieve the data structure as it currently sits.
+
+ trace_dump
+
+    Dumps the output of the collected data.
+
+    All of the following parameters are optional.
+
+    want => 'string', type => 'html', file => 'file.ext'
+
+    want: Takes either 'flow' or 'stack', and will output the respective
+    data collection. If this parameter is omitted, both code flow and stack
+    trace information is dumped.
+
+    type: Has only a single value, 'html. This will dump the output in HTML
+    format.
+
+    file: Takes the name of a file as a parameter. The dump will write
+    output to the file specified. The program will die if the file can not
+    be opened for writing.
 
 AUTHOR
 
