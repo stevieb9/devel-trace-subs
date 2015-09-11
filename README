@@ -57,6 +57,33 @@ FUNCTIONS
     output to the file specified. The program will die if the file can not
     be opened for writing.
 
+ inject_trace
+
+    Automatically injects the necessary code into Perl files to facilitate
+    stack tracing.
+
+    Parameters:
+
+    file => 'filename' - Mandatory: 'filename' can be the name of a single
+    file, a directory, or even a 'Module::Name'. If the filename is a
+    directory, we'll iterate recursively through the directory, and make
+    the changes to all .pl and .pm files underneath of it. If filename is a
+    'Module::Name', we'll load the file for that module dynamically, and
+    modify it. CAUTION: this will edit live production files.
+
+    copy => 'filename' - Optional: The name of a backup file. We'll copy
+    the file in file parameter and copy it to the file name specified, and
+    only work on the copied version, leaving the original file alone.
+
+    include => [qw(sub1 sub2)] - Optional: An array reference with the
+    names of subroutines you want to include. If include is sent in, only
+    these subs will be modified, ie. all others will be excluded by
+    default.
+
+    exclude => [qw(sub1 sub2)]> - Optional: This has the exact opposite
+    effect as include. Note that if exclude is sent in, include is rendered
+    useless.
+
 AUTHOR
 
     Steve Bertrand, <steveb at cpan.org>

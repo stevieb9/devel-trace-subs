@@ -235,6 +235,32 @@ C<file>: Takes the name of a file as a parameter. The dump will write output
 to the file specified. The program will C<die> if the file can not be opened
 for writing.
 
+=head2 C<inject_trace>
+
+Automatically injects the necessary code into Perl files to facilitate stack
+tracing.
+
+Parameters:
+
+C<file =E<gt> 'filename'> - Mandatory: 'filename' can be the name of a single
+file, a directory, or even a 'Module::Name'. If the filename is a directory,
+we'll iterate recursively through the directory, and make the changes to all
+C<.pl> and C<.pm> files underneath of it. If filename is a 'Module::Name',
+we'll load the file for that module dynamically, and modify it. CAUTION: this
+will edit live production files.
+
+C<copy =E<gt> 'filename'> - Optional: The name of a backup file. We'll copy
+the file in C<file> parameter and copy it to the file name specified, and
+only work on the copied version, leaving the original file alone.
+
+C<include =E<gt> [qw(sub1 sub2)]> - Optional: An array reference with the
+names of subroutines you want to include. If C<include> is sent in, only
+these subs will be modified, ie. all others will be excluded by default.
+
+C<exclude> =E<gt> [qw(sub1 sub2)]> - Optional: This has the exact opposite
+effect as C<include>. Note that if C<exclude> is sent in, C<include> is
+rendered useless.
+
 
 =cut
 
