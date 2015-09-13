@@ -24,9 +24,7 @@ $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
 sub trace {
 
-    # skip if disabled
-
-    return if $ENV{DTF_DISABLE_TRACE};
+    return unless $ENV{DTF_ENABLE_TRACE};
 
     _env();
 
@@ -125,14 +123,18 @@ sub install_trace {
     my $include = $p{include};
     my $exclude = $p{exclude};
 
+    my $des_use = Devel::Examine::Subs->new(file => $file,);
+
+    # this is a DES pre_proc
+
+    $des_use->inject(inject_use => _inject_use());
+
     my $des = Devel::Examine::Subs->new(
                                         file => $file,
                                         include => $include,
                                         exclude => $exclude,
                                         no_indent => 1,
-                                    );
-
-    $des->inject(inject_use => _inject_use());
+                                     );
 
     $des->inject_after(
         search => qr/sub\s+\w+\s+(?:\(.*?\)\s+)?\{/,
@@ -203,15 +205,24 @@ traces.
 
     # add a trace() call to the top of all your subs
 
-    trace();
+    trace(); # or even better: $trace() if $ENV{DTF_ENABLE_TRACE};
 
-    # then from anywhere (typically calling script), dump the output
+    # enable the module anywhere in the stack (preferably the calling script)
+
+    $ENV{DTF_ENABLE_TRACE}
+
+    # then from anywhere (typically near the end of the calling script) dump the output
 
     trace_dump();
 
     # automate the installation into a file (or all files in a directory)
 
     inject_trace(file => 'filename'); # or directory, or 'Module::Name'
+
+    # remove the effects of inject_trace()
+
+    remove_trace(file => 'filename')
+
 
 =head1 DESCRIPTION
 
@@ -223,13 +234,16 @@ C<trace()> calls into some or all subs in individual files, all Perl files
 within a directory structure, or even in production files by specifying its
 C<Module::Name>.
 
+It also has the facility to undo what was done by the automatic installation
+mentioned above.
+
 =head1 EXPORT
 
 None by default. See L<EXPORT_OK>
 
 =head1 EXPORT_OK
 
-    C<trace, trace_dump, inject_trace>
+C<trace, trace_dump, inject_trace>
 
 =head1 FUNCTIONS
 
@@ -237,9 +251,8 @@ None by default. See L<EXPORT_OK>
 
 Parameters: None
 
-Note: To completely disable tracing, set C<DTF_DISABLE_TRACE> environment
-variable to a true value from anywhere in the call stack (the calling script
-is most effective).
+In order to enable tracing, you must set C<$ENV{DTF_ENABLE_TRACE}> somewhere
+in the call stack (preferably in the calling script).
 
 Puts the call onto the stack trace. Call it in scalar context to retrieve the
 data structure as it currently sits.
@@ -265,13 +278,10 @@ C<file>: Takes the name of a file as a parameter. The dump will write output
 to the file specified. The program will C<die> if the file can not be opened
 for writing.
 
-=head2 C<inject_trace>
+=head2 C<install_trace>
 
 Automatically injects the necessary code into Perl files to facilitate stack
 tracing.
-
-In addition to adding the appropriate C<use> statement into each file, it
-adds a C<trace();> call to all (or specified) subroutines.
 
 Parameters:
 
@@ -294,6 +304,14 @@ C<exclude> =E<gt> [qw(sub1 sub2)]> - Optional: This has the exact opposite
 effect as C<include>. Note that if C<exclude> is sent in, C<include> is
 rendered useless.
 
+=head2 C<remove_trace>
+
+Automatically remove all remnants of this module from a file or files, that were
+added by this module's C<install_trace()> method.
+
+Parameters: C<file =E<gt> 'filename'>
+
+Where 'filename' can be the name of a file, a directory or a 'Module::Name'.
 
 =cut
 

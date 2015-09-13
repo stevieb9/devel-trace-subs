@@ -9,15 +9,23 @@ SYNOPSIS
     
         # add a trace() call to the top of all your subs
     
-        trace();
+        trace(); # or even better: $trace() if $ENV{DTF_ENABLE_TRACE};
     
-        # then from anywhere (typically calling script), dump the output
+        # enable the module anywhere in the stack (preferably the calling script)
+    
+        $ENV{DTF_ENABLE_TRACE}
+    
+        # then from anywhere (typically near the end of the calling script) dump the output
     
         trace_dump();
     
         # automate the installation into a file (or all files in a directory)
     
         inject_trace(file => 'filename'); # or directory, or 'Module::Name'
+    
+        # remove the effects of inject_trace()
+    
+        remove_trace(file => 'filename')
 
 DESCRIPTION
 
@@ -29,13 +37,16 @@ DESCRIPTION
     all Perl files within a directory structure, or even in production
     files by specifying its Module::Name.
 
+    It also has the facility to undo what was done by the automatic
+    installation mentioned above.
+
 EXPORT
 
     None by default. See EXPORT_OK
 
 EXPORT_OK
 
-        C<trace, trace_dump, inject_trace>
+    trace, trace_dump, inject_trace
 
 FUNCTIONS
 
@@ -43,9 +54,8 @@ FUNCTIONS
 
     Parameters: None
 
-    Note: To completely disable tracing, set DTF_DISABLE_TRACE environment
-    variable to a true value from anywhere in the call stack (the calling
-    script is most effective).
+    In order to enable tracing, you must set $ENV{DTF_ENABLE_TRACE}
+    somewhere in the call stack (preferably in the calling script).
 
     Puts the call onto the stack trace. Call it in scalar context to
     retrieve the data structure as it currently sits.
@@ -69,13 +79,10 @@ FUNCTIONS
     output to the file specified. The program will die if the file can not
     be opened for writing.
 
- inject_trace
+ install_trace
 
     Automatically injects the necessary code into Perl files to facilitate
     stack tracing.
-
-    In addition to adding the appropriate use statement into each file, it
-    adds a trace(); call to all (or specified) subroutines.
 
     Parameters:
 
@@ -98,6 +105,16 @@ FUNCTIONS
     exclude => [qw(sub1 sub2)]> - Optional: This has the exact opposite
     effect as include. Note that if exclude is sent in, include is rendered
     useless.
+
+ remove_trace
+
+    Automatically remove all remnants of this module from a file or files,
+    that were added by this module's install_trace() method.
+
+    Parameters: file => 'filename'
+
+    Where 'filename' can be the name of a file, a directory or a
+    'Module::Name'.
 
 AUTHOR
 
