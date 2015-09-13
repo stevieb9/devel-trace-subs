@@ -1,19 +1,19 @@
 NAME
 
-    Devel::Trace::Flow - Generate, track, store and print code flow and
+    Devel::Trace::Subs - Generate, track, store and print code flow and
     stack traces.
 
 SYNOPSIS
 
-        use Devel::Trace::Flow qw(trace trace_dump);
+        use Devel::Trace::Subs qw(trace trace_dump);
     
         # add a trace() call to the top of all your subs
     
-        trace(); # or even better: $trace() if $ENV{DTF_ENABLE_TRACE};
+        trace(); # or even better: $trace() if $ENV{DTS_ENABLE_TRACE};
     
         # enable the module anywhere in the stack (preferably the calling script)
     
-        $ENV{DTF_ENABLE_TRACE}
+        $ENV{DTS_ENABLE_TRACE}
     
         # then from anywhere (typically near the end of the calling script) dump the output
     
@@ -54,7 +54,7 @@ FUNCTIONS
 
     Parameters: None
 
-    In order to enable tracing, you must set $ENV{DTF_ENABLE_TRACE}
+    In order to enable tracing, you must set $ENV{DTS_ENABLE_TRACE}
     somewhere in the call stack (preferably in the calling script).
 
     Puts the call onto the stack trace. Call it in scalar context to
@@ -124,7 +124,7 @@ BUGS
 
     Please report any bugs or feature requests to bug-devel-trace-flow at
     rt.cpan.org, or through the web interface at
-    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Flow. I will
+    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Subs. I will
     be notified, and then you'll automatically be notified of progress on
     your bug as I make changes.
 
@@ -132,25 +132,25 @@ SUPPORT
 
     You can find documentation for this module with the perldoc command.
 
-        perldoc Devel::Trace::Flow
+        perldoc Devel::Trace::Subs
 
     You can also look for information at:
 
       * RT: CPAN's request tracker (report bugs here)
 
-      http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Flow
+      http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Subs
 
       * AnnoCPAN: Annotated CPAN documentation
 
-      http://annocpan.org/dist/Devel-Trace-Flow
+      http://annocpan.org/dist/Devel-Trace-Subs
 
       * CPAN Ratings
 
-      http://cpanratings.perl.org/d/Devel-Trace-Flow
+      http://cpanratings.perl.org/d/Devel-Trace-Subs
 
       * Search CPAN
 
-      http://search.cpan.org/dist/Devel-Trace-Flow/
+      http://search.cpan.org/dist/Devel-Trace-Subs/
 
 ACKNOWLEDGEMENTS
 

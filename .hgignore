@@ -14,8 +14,8 @@ inc/
 nytprof.out
 pod2htm*.tmp
 pm_to_blib
-Devel-Trace-Flow-*
-Devel-Trace-Flow-*.tar.gz
+Devel-Trace-Subs-*
+Devel-Trace-Subs-*.tar.gz
 README.bak
 ~$
 .idea/

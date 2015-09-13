@@ -4,10 +4,10 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME             => 'Devel::Trace::Flow',
+    NAME             => 'Devel::Trace::Subs',
     AUTHOR           => q{Steve Bertrand <steveb@cpan.org>},
-    VERSION_FROM     => 'lib/Devel/Trace/Flow.pm',
-    ABSTRACT_FROM    => 'lib/Devel/Trace/Flow.pm',
+    VERSION_FROM     => 'lib/Devel/Trace/Subs.pm',
+    ABSTRACT_FROM    => 'lib/Devel/Trace/Subs.pm',
     LICENSE          => 'artistic_2',
     PL_FILES         => {},
     MIN_PERL_VERSION => 5.006,
@@ -23,5 +23,5 @@ WriteMakefile(
         'Template' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'Devel-Trace-Flow-*' },
+    clean => { FILES => 'Devel-Trace-Subs-*' },
 );

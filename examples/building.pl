@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use Devel::Trace::Flow qw(trace trace_dump);
+use Devel::Trace::Subs qw(trace trace_dump);
 use Devel::Examine::Subs;
 
 one();
@@ -11,7 +11,7 @@ two();
 trace_dump(
 #    want => 'flow',
     type => 'html',
-    file => '/home/steve02/Desktop/index.html',
+    file => '/home/steve/index.html',
 );
 
 sub one {

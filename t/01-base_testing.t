@@ -7,17 +7,17 @@ use Test::More;
 use Test::More tests => 2;
 
 BEGIN {
-    use_ok( 'Devel::Trace::Flow' ) || print "Bail out!\n";
+    use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
 }
 
-use Devel::Trace::Flow qw(trace);
+use Devel::Trace::Subs qw(trace);
 
 # check/set env
 
 {
     my $pid = $$;
     trace; # set the pid in env
-    my $env_pid = $ENV{DTF_PID} ;
+    my $env_pid = $ENV{DTS_PID} ;
 
     is ( $pid, $env_pid, "ENV PID is the same as ours" );
 }

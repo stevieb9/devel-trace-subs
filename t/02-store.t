@@ -7,15 +7,15 @@ use Test::More;
 use Test::More tests => 1;
 
 BEGIN {
-    use_ok( 'Devel::Trace::Flow' ) || print "Bail out!\n";
+    use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
 }
 
-use Devel::Trace::Flow qw(trace);
+use Devel::Trace::Subs qw(trace);
 
 # check/set env
 
 {
-    my $store = Devel::Trace::Flow::_store({}, $$);
+    my $store = Devel::Trace::Subs::_store({}, $$);
     print "$store\n";
 }
 

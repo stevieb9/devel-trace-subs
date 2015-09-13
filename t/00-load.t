@@ -7,6 +7,6 @@ use Test::More;
 plan tests => 1;
 
 BEGIN {
-    use_ok( 'Devel::Trace::Flow' ) || print "Bail out!\n";
+    use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
 }
 

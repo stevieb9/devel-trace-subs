@@ -50,7 +50,7 @@ TODO: {
     "placeholder date/time"       => qr(Date/time)
   );
 
-  module_boilerplate_ok('lib/Devel/Trace/Flow.pm');
+  module_boilerplate_ok('lib/Devel/Trace/Subs.pm');
 
 
 }

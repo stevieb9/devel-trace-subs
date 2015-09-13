@@ -1,4 +1,9 @@
-Revision history for Devel-Trace-Flow
+Revision history for Devel-Trace-Subs
+
+0.02    2015-09-13
+        - install_trace() added
+        - remove_trace() added
+        - renamed module from Devel::Trace::Flow to Devel::Trace::Subs
 
 0.01    2015-09-10
         - initial version
