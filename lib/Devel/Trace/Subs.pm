@@ -193,6 +193,8 @@ sub _store {
 
 }
 
+sub _fold_placeholder {};
+
 END {
     unlink $ENV{DTS_STORE} if $ENV{DTS_STORE};
 }
@@ -223,9 +225,9 @@ traces.
 
     # automate the installation into a file (or all files in a directory)
 
-    inject_trace(file => 'filename'); # or directory, or 'Module::Name'
+    install_trace(file => 'filename'); # or directory, or 'Module::Name'
 
-    # remove the effects of inject_trace()
+    # remove the effects of install_trace()
 
     remove_trace(file => 'filename')
 
@@ -249,7 +251,7 @@ None by default. See L<EXPORT_OK>
 
 =head1 EXPORT_OK
 
-C<trace, trace_dump, inject_trace, remove_trace>
+C<trace, trace_dump, install_trace, remove_trace>
 
 =head1 FUNCTIONS
 
@@ -382,3 +384,4 @@ See L<http://dev.perl.org/licenses/> for more information.
 =cut
 
 1; # End of Devel::Trace::Subs
+
