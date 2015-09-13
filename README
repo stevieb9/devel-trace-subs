@@ -9,11 +9,11 @@ SYNOPSIS
     
         # add a trace() call to the top of all your subs
     
-        trace(); # or even better: $trace() if $ENV{DTS_ENABLE_TRACE};
+        trace(); # or even better: $trace() if $ENV{DTS_ENABLE};
     
         # enable the module anywhere in the stack (preferably the calling script)
     
-        $ENV{DTS_ENABLE_TRACE}
+        $ENV{DTS_ENABLE} = 1;
     
         # then from anywhere (typically near the end of the calling script) dump the output
     
@@ -54,8 +54,9 @@ FUNCTIONS
 
     Parameters: None
 
-    In order to enable tracing, you must set $ENV{DTS_ENABLE_TRACE}
-    somewhere in the call stack (preferably in the calling script).
+    In order to enable tracing, you must set $ENV{DTS_ENABLE} to a true
+    value somewhere in the call stack (preferably in the calling script).
+    Simply set to a false value (or remove it) to disable this module.
 
     Puts the call onto the stack trace. Call it in scalar context to
     retrieve the data structure as it currently sits.
