@@ -126,6 +126,8 @@ sub install_trace {
 
     my $des_use = Devel::Examine::Subs->new(file => $file,);
 
+    remove_trace(file => $file);
+
     # this is a DES pre_proc
 
     $des_use->inject(inject_use => _inject_use());
@@ -139,7 +141,7 @@ sub install_trace {
 
     $des->inject_after(
 
-        search => /sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\w+\s*$|sub\s+\{\s*(?!\s*[\S])/,
+        search => qr/sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\w+\s*$|sub\s+\{\s*(?!\s*[\S])/,
         code => _inject_code(),
     );
 }
