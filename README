@@ -21,9 +21,9 @@ SYNOPSIS
     
         # automate the installation into a file (or all files in a directory)
     
-        inject_trace(file => 'filename'); # or directory, or 'Module::Name'
+        install_trace(file => 'filename'); # or directory, or 'Module::Name'
     
-        # remove the effects of inject_trace()
+        # remove the effects of install_trace()
     
         remove_trace(file => 'filename')
 
@@ -46,7 +46,7 @@ EXPORT
 
 EXPORT_OK
 
-    trace, trace_dump, inject_trace, remove_trace
+    trace, trace_dump, install_trace, remove_trace
 
 FUNCTIONS
 
