@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
                     remove_trace
                 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
@@ -121,6 +121,7 @@ sub install_trace {
     my %p = @_;
 
     my $file = $p{file};
+    my $extensions => $p{extensions};
     my $include = $p{include};
     my $exclude = $p{exclude};
 
@@ -134,6 +135,7 @@ sub install_trace {
 
     my $des = Devel::Examine::Subs->new(
                                         file => $file,
+                                        extensions => $extensions,
                                         include => $include,
                                         exclude => $exclude,
                                         no_indent => 1,
@@ -297,9 +299,9 @@ C<.pl> and C<.pm> files underneath of it. If filename is a 'Module::Name',
 we'll load the file for that module dynamically, and modify it. CAUTION: this
 will edit live production files.
 
-C<copy =E<gt> 'filename'> - Optional: The name of a backup file. We'll copy
-the file in C<file> parameter and copy it to the file name specified, and
-only work on the copied version, leaving the original file alone.
+C<extensions =>E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
+and C<.pl> files. Specify only the extensions you want by adding them into this
+array reference, less the dot.
 
 C<include =E<gt> [qw(sub1 sub2)]> - Optional: An array reference with the
 names of subroutines you want to include. If C<include> is sent in, only
