@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
                     remove_trace
                 );
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
@@ -99,7 +99,7 @@ sub trace_dump {
         }
     }
     if (! $want){
-        if ($out_type eq 'html') {
+        if ($out_type && $out_type eq 'html') {
             html(
                 file => $file,
                 data => $data
