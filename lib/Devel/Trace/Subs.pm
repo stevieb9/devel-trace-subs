@@ -138,7 +138,8 @@ sub install_trace {
                                      );
 
     $des->inject_after(
-        search => qr/sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\w+\s*$/,
+
+        search => /sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\w+\s*$|sub\s+\{\s*(?!\s*[\S])/,
         code => _inject_code(),
     );
 }

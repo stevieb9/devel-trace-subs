@@ -1,5 +1,10 @@
 Revision history for Devel-Trace-Subs
 
+0.03    2015-09-13
+        - updated sub regex to catch subs with open brace on next line
+        - "" "" "" to catch subs with close brace on same line
+        - "" "" "" to catch anon subs (but skip the one-liners)
+
 0.02    2015-09-13
         - install_trace() added
         - remove_trace() added
