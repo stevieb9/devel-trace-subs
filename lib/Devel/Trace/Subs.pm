@@ -143,7 +143,7 @@ sub install_trace {
 
     $des->inject_after(
 
-        search => qr/sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\w+\s*$|sub\s+\{\s*(?!\s*[\S])/,
+        search => qr/sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\{\s*(?!\s*[\S])/,
         code => _inject_code(),
     );
 }
@@ -157,10 +157,10 @@ sub remove_trace {
     $des->remove(delete => [qr/injected by Devel::Trace::Subs/]);
 }
 sub _inject_code {
-    return ["\t" . 'trace() if $ENV{DTS_ENABLE}; # injected by Devel::Trace::Subs.. DO NOT EDIT THIS LINE!'];
+    return ["\t" . 'trace() if $ENV{DTS_ENABLE}; # injected by Devel::Trace::Subs'];
 }
 sub _inject_use {
-    return ['use Devel::Trace::Subs qw(trace trace_dump); # injected by Devel::Trace::Subs... DO NOT EDIT THIS LINE!'];
+    return ['use Devel::Trace::Subs qw(trace trace_dump); # injected by Devel::Trace::Subs'];
 }
 sub _env {
 
@@ -209,7 +209,7 @@ traces.
 
 =head1 SYNOPSIS
 
-    use Devel::Trace::Subs qw(trace trace_dump);
+    use Devel::Trace::Subs qw(trace);
 
     # add a trace() call to the top of all your subs
 
@@ -266,6 +266,10 @@ a false value (or remove it) to disable this module.
 Puts the call onto the stack trace. Call it in scalar context to retrieve the
 data structure as it currently sits.
 
+Note: It is best to write the call to this function within an C<if> statement, eg:
+C<trace() if $ENV{DTS_ENABLE};>. That way, if you decide to disable tracing,
+you'll short circuit the process of having the module's C<trace()> function
+being loaded and doing this for you.
 
 =head2 C<trace_dump>
 
@@ -316,7 +320,7 @@ rendered useless.
 =head2 C<remove_trace>
 
 Automatically remove all remnants of this module from a file or files, that were
-added by this module's C<install_trace()> method.
+added by this module's C<install_trace()> function.
 
 Parameters: C<file =E<gt> 'filename'>
 
