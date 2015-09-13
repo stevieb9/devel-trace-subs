@@ -14,7 +14,8 @@ our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
                     trace
                     trace_dump
-                    inject_trace
+                    install_trace
+                    remove_trace
                 );
 
 our $VERSION = '0.02';
@@ -116,31 +117,42 @@ sub trace_dump {
         }
     }
 }
-sub inject_trace {
+sub install_trace {
 
     my %p = @_;
 
     my $file = $p{file};
-    my $copy = $p{copy};
     my $include = $p{include};
     my $exclude = $p{exclude};
 
     my $des = Devel::Examine::Subs->new(
                                         file => $file,
-                                        copy => $copy,
                                         include => $include,
                                         exclude => $exclude,
                                         no_indent => 1,
                                     );
 
-    my $use = ['use Devel::Trace::Flow qw(trace trace_dump);'];
-
-    $des->inject(inject_use => $use);
+    $des->inject(inject_use => _inject_use());
 
     $des->inject_after(
         search => qr/sub\s+\w+\s+(?:\(.*?\)\s+)?\{/,
-        code => ["\ttrace();\n"],
+        code => _inject_code(),
     );
+}
+sub remove_trace {
+    
+    my %p = @_;
+    my $file = $p{file};
+
+    my $des = Devel::Examine::Subs->new( file => $file ); 
+
+    $des->remove(delete => [qr/injected by Devel::Trace::Flow/]);
+}
+sub _inject_code {
+    return ["\t" . 'trace() if $ENV{DTF_ENABLE}; # injected by Devel::Trace::Flow.. DO NOT EDIT THIS LINE!'];
+}
+sub _inject_use {
+    return ['use Devel::Trace::Flow qw(trace trace_dump); # injected by Devel::Trace::Flow... DO NOT EDIT THIS LINE!'];
 }
 sub _env {
 
@@ -149,12 +161,11 @@ sub _env {
 
     return $pid;
 }
-
 sub _store {
 
     my $data = shift;
 
-    my $pid = $ENV{DTF_PID};
+    my $pid = $ENV{DTF_PID} || shift;
     my $store = "DTF_" . join('_', ($pid x 3)) . ".dat";
 
     $ENV{DTF_STORE} = $store;
