@@ -244,7 +244,7 @@ None by default. See L<EXPORT_OK>
 
 =head1 EXPORT_OK
 
-C<trace, trace_dump, inject_trace>
+C<trace, trace_dump, inject_trace, remove_trace>
 
 =head1 FUNCTIONS
 
@@ -273,7 +273,7 @@ C<want>: Takes either C<'flow'> or C<'stack'>, and will output the respective
 data collection. If this parameter is omitted, both code flow and stack trace
 information is dumped.
 
-C<type>: Has only a single value, C<'html>. This will dump the output in HTML
+C<type>: Has only a single value, C<'html'>. This will dump the output in HTML
 format.
 
 C<file>: Takes the name of a file as a parameter. The dump will write output
@@ -302,7 +302,7 @@ C<include =E<gt> [qw(sub1 sub2)]> - Optional: An array reference with the
 names of subroutines you want to include. If C<include> is sent in, only
 these subs will be modified, ie. all others will be excluded by default.
 
-C<exclude> =E<gt> [qw(sub1 sub2)]> - Optional: This has the exact opposite
+C<exclude =E<gt> [qw(sub1 sub2)]> - Optional: This has the exact opposite
 effect as C<include>. Note that if C<exclude> is sent in, C<include> is
 rendered useless.
 
