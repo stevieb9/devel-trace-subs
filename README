@@ -5,7 +5,7 @@ NAME
 
 SYNOPSIS
 
-        use Devel::Trace::Subs qw(trace trace_dump);
+        use Devel::Trace::Subs qw(trace);
     
         # add a trace() call to the top of all your subs
     
@@ -61,6 +61,11 @@ FUNCTIONS
     Puts the call onto the stack trace. Call it in scalar context to
     retrieve the data structure as it currently sits.
 
+    Note: It is best to write the call to this function within an if
+    statement, eg: trace() if $ENV{DTS_ENABLE};. That way, if you decide to
+    disable tracing, you'll short circuit the process of having the
+    module's trace() function being loaded and doing this for you.
+
  trace_dump
 
     Dumps the output of the collected data.
@@ -110,7 +115,7 @@ FUNCTIONS
  remove_trace
 
     Automatically remove all remnants of this module from a file or files,
-    that were added by this module's install_trace() method.
+    that were added by this module's install_trace() function.
 
     Parameters: file => 'filename'
 
