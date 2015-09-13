@@ -121,7 +121,7 @@ sub install_trace {
     my %p = @_;
 
     my $file = $p{file};
-    my $extensions => $p{extensions};
+    my $extensions = $p{extensions};
     my $include = $p{include};
     my $exclude = $p{exclude};
 
@@ -301,7 +301,7 @@ C<.pl> and C<.pm> files underneath of it. If filename is a 'Module::Name',
 we'll load the file for that module dynamically, and modify it. CAUTION: this
 will edit live production files.
 
-C<extensions =>E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
+C<extensions =E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
 and C<.pl> files. Specify only the extensions you want by adding them into this
 array reference, less the dot.
 

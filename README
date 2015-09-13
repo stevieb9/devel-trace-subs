@@ -94,7 +94,7 @@ FUNCTIONS
     'Module::Name', we'll load the file for that module dynamically, and
     modify it. CAUTION: this will edit live production files.
 
-    extensions => ['pl', 'pm']> - Optional: By default, we change all .pm
+    extensions => ['pl', 'pm'] - Optional: By default, we change all .pm
     and .pl files. Specify only the extensions you want by adding them into
     this array reference, less the dot.
 
