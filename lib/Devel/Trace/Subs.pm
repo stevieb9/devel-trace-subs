@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
                     remove_trace
                 );
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
@@ -142,7 +142,6 @@ sub install_trace {
                                      );
 
     $des->inject_after(
-
         search => qr/sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\{\s*(?!\s*[\S])/,
         code => _inject_code(),
     );
@@ -192,7 +191,6 @@ sub _store {
     store($data, $store);
 
 }
-
 sub _fold_placeholder {};
 
 END {

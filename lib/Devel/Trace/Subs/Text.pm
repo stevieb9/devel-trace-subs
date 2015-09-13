@@ -9,7 +9,7 @@ use Template;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(text);
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 my ($stack_tpl, $flow_tpl, $all_tpl);
 
