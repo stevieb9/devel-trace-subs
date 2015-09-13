@@ -1,9 +1,24 @@
 Changes
-lib/Devel/Trace/Flow.pm
-Makefile.PL
+examples/building.pl
+examples/des.pl
+examples/inject.pl
+examples/remove.pl
+ignore.txt
+lib/Devel/Trace/Subs.pm
+lib/Devel/Trace/Subs/HTML.pm
+lib/Devel/Trace/Subs/Text.pm
 MANIFEST			This list of files
+MANIFEST.bak
+MANIFEST.SKIP
 README
+src/templates/flow.tpl
+src/templates/stack.tpl
 t/00-load.t
+t/01-base_testing.t
+t/02-store.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+t/sample.pl
+t/trace_sample.pl
+xt/boilerplate.t

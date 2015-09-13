@@ -1,4 +1,4 @@
-package Devel::Trace::Flow::HTML;
+package Devel::Trace::Subs::HTML;
 use strict;
 use warnings;
 
@@ -80,7 +80,7 @@ BEGIN {
 @stack_tpl = <<EOF;
 <html>
 <head>
- <title>Devel::Trace::Flow</title>
+ <title>Devel::Trace::Subs</title>
 </head>
 
 <body>
@@ -112,14 +112,14 @@ EOF
 @flow_tpl = <<EOF;
 <html>
 <head>
- <title>Devel::Trace::Flow</title>
+ <title>Devel::Trace::Subs</title>
 </head>
 
 <body>
 
 <br><br>
 
-<h3>Code Flow:</h3>
+<h3>Code Subs:</h3>
 
 <table id=error border=0 cellspacing=0>
 <TMPL_LOOP NAME=FLOW>
@@ -135,14 +135,14 @@ EOF
 @all_tpl = <<EOF;
 <html>
 <head>
- <title>Devel::Trace::Flow</title>
+ <title>Devel::Trace::Subs</title>
 </head>
 
 <body>
 
 <br>
 
-<h3>Code Flow:</h3>
+<h3>Code Subs:</h3>
 
 <table id=error border=0 cellspacing=0>
 <TMPL_LOOP NAME=FLOW>

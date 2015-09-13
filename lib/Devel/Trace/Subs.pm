@@ -1,12 +1,12 @@
-package Devel::Trace::Flow;
+package Devel::Trace::Subs;
 use 5.006;
 use strict;
 use warnings;
 
 use Data::Dumper;
 use Devel::Examine::Subs;
-use Devel::Trace::Flow::HTML qw(html);
-use Devel::Trace::Flow::Text qw(text);
+use Devel::Trace::Subs::HTML qw(html);
+use Devel::Trace::Subs::Text qw(text);
 use Exporter;
 use Storable;
 
@@ -24,13 +24,13 @@ $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
 sub trace {
 
-    return unless $ENV{DTF_ENABLE_TRACE};
+    return unless $ENV{DTS_ENABLE};
 
     _env();
 
     my $data = _store();
 
-    my $flow_count = ++$ENV{DTF_FLOW_COUNT};
+    my $flow_count = ++$ENV{DTS_FLOW_COUNT};
 
     push @{$data->{flow}}, {
                             name => $flow_count,
@@ -53,8 +53,9 @@ sub trace {
 }
 sub trace_dump {
 
-    if (! $ENV{DTF_PID}){
-        die "Can't call trace_dump() without calling trace()\n";
+    if (! $ENV{DTS_PID}){
+        die "\nCan't call trace_dump() without calling trace()\n\n" .
+            'Make sure to set $ENV{DTS_ENABLE} = 1;' . "\n\n";
     }
 
     my %p = @_;
@@ -148,18 +149,18 @@ sub remove_trace {
 
     my $des = Devel::Examine::Subs->new( file => $file ); 
 
-    $des->remove(delete => [qr/injected by Devel::Trace::Flow/]);
+    $des->remove(delete => [qr/injected by Devel::Trace::Subs/]);
 }
 sub _inject_code {
-    return ["\t" . 'trace() if $ENV{DTF_ENABLE}; # injected by Devel::Trace::Flow.. DO NOT EDIT THIS LINE!'];
+    return ["\t" . 'trace() if $ENV{DTS_ENABLE}; # injected by Devel::Trace::Subs.. DO NOT EDIT THIS LINE!'];
 }
 sub _inject_use {
-    return ['use Devel::Trace::Flow qw(trace trace_dump); # injected by Devel::Trace::Flow... DO NOT EDIT THIS LINE!'];
+    return ['use Devel::Trace::Subs qw(trace trace_dump); # injected by Devel::Trace::Subs... DO NOT EDIT THIS LINE!'];
 }
 sub _env {
 
     my $pid = $$;
-    $ENV{DTF_PID} = $pid;
+    $ENV{DTS_PID} = $pid;
 
     return $pid;
 }
@@ -167,10 +168,10 @@ sub _store {
 
     my $data = shift;
 
-    my $pid = $ENV{DTF_PID} || shift;
-    my $store = "DTF_" . join('_', ($pid x 3)) . ".dat";
+    my $pid = $ENV{DTS_PID} || shift;
+    my $store = "DTS_" . join('_', ($pid x 3)) . ".dat";
 
-    $ENV{DTF_STORE} = $store;
+    $ENV{DTS_STORE} = $store;
 
     my $struct;
 
@@ -188,28 +189,28 @@ sub _store {
 }
 
 END {
-    unlink $ENV{DTF_STORE} if $ENV{DTF_STORE};
+    unlink $ENV{DTS_STORE} if $ENV{DTS_STORE};
 }
 
 __END__
 
 =head1 NAME
 
-Devel::Trace::Flow - Generate, track, store and print code flow and stack
+Devel::Trace::Subs - Generate, track, store and print code flow and stack
 traces.
 
 
 =head1 SYNOPSIS
 
-    use Devel::Trace::Flow qw(trace trace_dump);
+    use Devel::Trace::Subs qw(trace trace_dump);
 
     # add a trace() call to the top of all your subs
 
-    trace(); # or even better: $trace() if $ENV{DTF_ENABLE_TRACE};
+    trace(); # or even better: $trace() if $ENV{DTS_ENABLE};
 
     # enable the module anywhere in the stack (preferably the calling script)
 
-    $ENV{DTF_ENABLE_TRACE}
+    $ENV{DTS_ENABLE} = 1;
 
     # then from anywhere (typically near the end of the calling script) dump the output
 
@@ -251,8 +252,9 @@ C<trace, trace_dump, inject_trace>
 
 Parameters: None
 
-In order to enable tracing, you must set C<$ENV{DTF_ENABLE_TRACE}> somewhere
-in the call stack (preferably in the calling script).
+In order to enable tracing, you must set C<$ENV{DTS_ENABLE}> to a true value
+somewhere in the call stack (preferably in the calling script). Simply set to
+a false value (or remove it) to disable this module.
 
 Puts the call onto the stack trace. Call it in scalar context to retrieve the
 data structure as it currently sits.
@@ -323,7 +325,7 @@ Steve Bertrand, C<< <steveb at cpan.org> >>
 
 Please report any bugs or feature requests to C<bug-devel-trace-flow at
 rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Flow>.  I will
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Subs>.  I will
 be notified, and then you'll automatically be notified of progress on your
 bug as I make changes.
 
@@ -332,7 +334,7 @@ bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Devel::Trace::Flow
+    perldoc Devel::Trace::Subs
 
 
 You can also look for information at:
@@ -341,19 +343,19 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Flow>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Subs>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Devel-Trace-Flow>
+L<http://annocpan.org/dist/Devel-Trace-Subs>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Devel-Trace-Flow>
+L<http://cpanratings.perl.org/d/Devel-Trace-Subs>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Devel-Trace-Flow/>
+L<http://search.cpan.org/dist/Devel-Trace-Subs/>
 
 =back
 
@@ -374,4 +376,4 @@ See L<http://dev.perl.org/licenses/> for more information.
 
 =cut
 
-1; # End of Devel::Trace::Flow
+1; # End of Devel::Trace::Subs

@@ -1,4 +1,4 @@
-package Devel::Trace::Flow::Text;
+package Devel::Trace::Subs::Text;
 use strict;
 use warnings;
 

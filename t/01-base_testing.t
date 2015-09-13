@@ -15,8 +15,9 @@ use Devel::Trace::Subs qw(trace);
 # check/set env
 
 {
+    $ENV{DTS_ENABLE_TRACE} = 1;
     my $pid = $$;
-    trace; # set the pid in env
+    trace(); # set the pid in env
     my $env_pid = $ENV{DTS_PID} ;
 
     is ( $pid, $env_pid, "ENV PID is the same as ours" );
