@@ -302,8 +302,7 @@ file, a directory, or even a 'Module::Name'. If the filename is a directory,
 we'll iterate recursively through the directory, and make the changes to all
 C<.pl> and C<.pm> files underneath of it (by default). If filename is a 
 'Module::Name', we'll load the file for that module dynamically, and modify it. 
-CAUTION: this will edit live production files. NOTE: The module has to be loaded
-prior to it being modified (C<use Module::Name>).
+CAUTION: this will edit live production files.
 
 C<extensions =E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
 and C<.pl> files. Specify only the extensions you want by adding them into this

@@ -98,8 +98,7 @@ FUNCTIONS
     the changes to all .pl and .pm files underneath of it (by default). If
     filename is a 'Module::Name', we'll load the file for that module
     dynamically, and modify it. CAUTION: this will edit live production
-    files. NOTE: The module has to be loaded prior to it being modified
-    (use Module::Name).
+    files.
 
     extensions => ['pl', 'pm'] - Optional: By default, we change all .pm
     and .pl files. Specify only the extensions you want by adding them into
