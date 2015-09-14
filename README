@@ -33,9 +33,9 @@ DESCRIPTION
     stack trace information in calls between subroutines.
 
     Optionally, you can use this module to automatically inject the
-    appropriate trace() calls into some or all subs in individual files,
-    all Perl files within a directory structure, or even in production
-    files by specifying its Module::Name.
+    appropriate trace() calls into all subs in individual files, all Perl
+    files within a directory structure, or even in production files by
+    specifying its Module::Name.
 
     It also has the facility to undo what was done by the automatic
     installation mentioned above.
@@ -95,22 +95,15 @@ FUNCTIONS
     file => 'filename' - Mandatory: 'filename' can be the name of a single
     file, a directory, or even a 'Module::Name'. If the filename is a
     directory, we'll iterate recursively through the directory, and make
-    the changes to all .pl and .pm files underneath of it. If filename is a
-    'Module::Name', we'll load the file for that module dynamically, and
-    modify it. CAUTION: this will edit live production files.
+    the changes to all .pl and .pm files underneath of it (by default). If
+    filename is a 'Module::Name', we'll load the file for that module
+    dynamically, and modify it. CAUTION: this will edit live production
+    files. NOTE: The module has to be loaded prior to it being modified
+    (use Module::Name).
 
     extensions => ['pl', 'pm'] - Optional: By default, we change all .pm
     and .pl files. Specify only the extensions you want by adding them into
     this array reference, less the dot.
-
-    include => [qw(sub1 sub2)] - Optional: An array reference with the
-    names of subroutines you want to include. If include is sent in, only
-    these subs will be modified, ie. all others will be excluded by
-    default.
-
-    exclude => [qw(sub1 sub2)] - Optional: This has the exact opposite
-    effect as include. Note that if exclude is sent in, include is rendered
-    useless.
 
  remove_trace
 

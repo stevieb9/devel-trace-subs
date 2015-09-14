@@ -237,8 +237,8 @@ This module facilitates keeping track of a project's code flow and stack
 trace information in calls between subroutines.
 
 Optionally, you can use this module to automatically inject the appropriate
-C<trace()> calls into some or all subs in individual files, all Perl files
-within a directory structure, or even in production files by specifying its
+C<trace()> calls into all subs in individual files, all Perl files within a 
+directory structure, or even in production files by specifying its 
 C<Module::Name>.
 
 It also has the facility to undo what was done by the automatic installation
@@ -300,21 +300,14 @@ Parameters:
 C<file =E<gt> 'filename'> - Mandatory: 'filename' can be the name of a single
 file, a directory, or even a 'Module::Name'. If the filename is a directory,
 we'll iterate recursively through the directory, and make the changes to all
-C<.pl> and C<.pm> files underneath of it. If filename is a 'Module::Name',
-we'll load the file for that module dynamically, and modify it. CAUTION: this
-will edit live production files.
+C<.pl> and C<.pm> files underneath of it (by default). If filename is a 
+'Module::Name', we'll load the file for that module dynamically, and modify it. 
+CAUTION: this will edit live production files. NOTE: The module has to be loaded
+prior to it being modified (C<use Module::Name>).
 
 C<extensions =E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
 and C<.pl> files. Specify only the extensions you want by adding them into this
 array reference, less the dot.
-
-C<include =E<gt> [qw(sub1 sub2)]> - Optional: An array reference with the
-names of subroutines you want to include. If C<include> is sent in, only
-these subs will be modified, ie. all others will be excluded by default.
-
-C<exclude =E<gt> [qw(sub1 sub2)]> - Optional: This has the exact opposite
-effect as C<include>. Note that if C<exclude> is sent in, C<include> is
-rendered useless.
 
 =head2 C<remove_trace>
 

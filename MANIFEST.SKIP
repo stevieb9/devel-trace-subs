@@ -20,3 +20,4 @@ Devel-Trace-Subs-*.tar.gz
 README.bak$
 .hg/
 ~$
+.idea/

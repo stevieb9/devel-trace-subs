@@ -19,3 +19,5 @@ Devel-Trace-Subs-*.tar.gz
 README.bak
 ~$
 .idea/
+.bak$
+.old$
