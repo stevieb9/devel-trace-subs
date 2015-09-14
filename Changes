@@ -1,5 +1,8 @@
 Revision history for Devel-Trace-Subs
 
+0.07    2015-09-14
+        - bumped DES req to v1.30
+
 0.06    2015-09-14
         - install_trace() now uses DES->inject(inject_after_sub_def => [])
           instead of DES->inject_after()
