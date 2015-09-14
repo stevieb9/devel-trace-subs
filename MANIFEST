@@ -8,6 +8,7 @@ ignore.txt
 lib/Devel/Trace/Subs.pm
 lib/Devel/Trace/Subs/HTML.pm
 lib/Devel/Trace/Subs/Text.pm
+Makefile.PL
 MANIFEST			This list of files
 MANIFEST.bak
 MANIFEST.SKIP
