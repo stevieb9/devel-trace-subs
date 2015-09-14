@@ -136,14 +136,10 @@ sub install_trace {
     my $des = Devel::Examine::Subs->new(
                                         file => $file,
                                         extensions => $extensions,
-                                        include => $include,
-                                        exclude => $exclude,
-                                        no_indent => 1,
                                      );
 
-    $des->inject_after(
-        search => qr/sub\s+\w+\s*(?:\(.*?\)\s+)?\{\s*(?!\s*[\S])|sub\s+\{\s*(?!\s*[\S])/,
-        code => _inject_code(),
+    $des->inject(
+        inject_after_sub_def => _inject_code(),
     );
 }
 sub remove_trace {
@@ -156,10 +152,15 @@ sub remove_trace {
     $des->remove(delete => [qr/injected by Devel::Trace::Subs/]);
 }
 sub _inject_code {
-    return ["\t" . 'trace() if $ENV{DTS_ENABLE}; # injected by Devel::Trace::Subs'];
+    return [
+        'trace() if $ENV{DTS_ENABLE}; # injected by Devel::Trace::Subs',
+    ];
 }
 sub _inject_use {
-    return ['use Devel::Trace::Subs qw(trace trace_dump); # injected by Devel::Trace::Subs'];
+    return [
+        'use Devel::Trace::Subs qw(trace trace_dump); ' .
+        '# injected by Devel::Trace::Subs',
+    ];
 }
 sub _env {
 
