@@ -137,7 +137,7 @@ sub install_trace {
                                         extensions => $extensions,
                                      );
 
-    $inject = $p->{inject} || _inject_code();
+    $inject = $p{inject} || _inject_code();
 
     $des->inject(
         inject_after_sub_def => _inject_code(),
