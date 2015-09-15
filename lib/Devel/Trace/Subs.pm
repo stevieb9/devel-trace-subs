@@ -324,6 +324,34 @@ Where 'filename' can be the name of a file, a directory or a 'Module::Name'.
 
 =cut
 
+=head1 EXAMPLES
+
+One-liner to install into a live module:
+
+    sudo perl -MDevel::Trace::Subs=install_trace -e 'install_trace(file => "Data::Dumper");
+
+One-liner to test that it worked:
+
+    perl -MDevel::Trace::Subs=trace_dump -e '$ENV{DTS_TRACE}=1; dd {a=>1}; trace_dump();'
+
+One-liner to uninstall:
+
+    sudo perl -MDevel::Trace::Subs=remove_trace -e 'remove_trace(file => "Data::Dumper");
+
+Install into all C<*.pm> files in a directory structure:
+
+    use warnings;
+    use strict;
+
+    use Devel::Trace::Subs qw(install_trace);
+
+    install_trace(
+                file => '/path/to/files/',
+                extensions => ['pm'],
+             );
+
+See the files in the distributions C<examples> directory for other examples.
+
 =head1 AUTHOR
 
 Steve Bertrand, C<< <steveb at cpan.org> >>
