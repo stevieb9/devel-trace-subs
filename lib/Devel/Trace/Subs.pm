@@ -364,6 +364,9 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Devel-Trace-Subs>.  I will
 be notified, and then you'll automatically be notified of progress on your
 bug as I make changes.
 
+=head1 REPOSITORY
+
+L<https://github.com/stevieb9/devel-trace-subs>
 
 =head1 SUPPORT
 
