@@ -9,7 +9,7 @@ use HTML::Template;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(html);
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 my (@stack_tpl, @flow_tpl, @all_tpl);
 

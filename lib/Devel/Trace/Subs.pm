@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
                     remove_trace
                 );
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
