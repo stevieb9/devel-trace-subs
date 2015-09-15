@@ -67,7 +67,7 @@ sub trace_dump {
     my $data = _store();
 
     if ($want && $want eq 'stack'){
-        if ($out_type eq 'html') {
+        if ($out_type && $out_type eq 'html') {
             html(
                 file => $file,
                 want => $want,
@@ -83,7 +83,7 @@ sub trace_dump {
         }
     }
     if ($want && $want eq 'flow'){
-        if ($out_type eq 'html') {
+        if ($out_type && $out_type eq 'html') {
             html(
                 file => $file,
                 want => $want,

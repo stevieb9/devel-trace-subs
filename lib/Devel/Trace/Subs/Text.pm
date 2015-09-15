@@ -94,7 +94,7 @@ $stack_tpl = <<EOF;
 
 Stack trace:
 
-[% FOREACH entry IN stack %]
+[%- FOREACH entry IN stack %]
     in:      [% entry.in %]
     sub:     [% entry.sub %]
     file:    [% entry.filename %]
@@ -110,10 +110,9 @@ Code flow:
 [% FOREACH entry IN flow -%]
     [% entry.name %]: [% entry.value %]
 [% END %]
-
 Stack trace:
 
-[% FOREACH entry IN stack %]
+[%- FOREACH entry IN stack %]
     in:      [% entry.in %]
     sub:     [% entry.sub %]
     file:    [% entry.filename %]

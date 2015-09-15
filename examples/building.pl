@@ -5,13 +5,15 @@ use warnings;
 use Devel::Trace::Subs qw(trace trace_dump);
 use Devel::Examine::Subs;
 
+$ENV{DTS_ENABLE} = 1;
+
 one();
 two();
 
 trace_dump(
 #    want => 'flow',
-    type => 'html',
-    file => '/home/steve/index.html',
+#    type => 'html',
+#    file => '/home/steve/index.html',
 );
 
 sub one {
