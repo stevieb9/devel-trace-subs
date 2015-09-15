@@ -14,6 +14,16 @@ WriteMakefile(
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
     },
+    META_MERGE => {
+        'meta-spec' => { version => 2 },
+        resources => {
+            repository => {
+                type => 'git',
+                url => 'https://github.com/stevieb9/devel-trace-subs.git',
+                web => 'https://github.com/stevieb9/devel-trace-subs',
+            },
+        },
+    },
     BUILD_REQUIRES => {
         'Test::More' => 0,
     },

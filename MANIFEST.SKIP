@@ -21,3 +21,5 @@ README.bak$
 .hg/
 ~$
 .idea/
+.git/
+.gitignore$
