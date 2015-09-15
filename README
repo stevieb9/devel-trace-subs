@@ -104,6 +104,11 @@ FUNCTIONS
     and .pl files. Specify only the extensions you want by adding them into
     this array reference, less the dot.
 
+    <inject => ['your code here;', 'more code;']> - The lines of code
+    supplied here will override the default. Note that remove_trace() will
+    not remove these lines, and for uninstall, you'll have to manually
+    delete them.
+
  remove_trace
 
     Automatically remove all remnants of this module from a file or files,

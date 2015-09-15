@@ -122,8 +122,7 @@ sub install_trace {
 
     my $file = $p{file};
     my $extensions = $p{extensions};
-    my $include = $p{include};
-    my $exclude = $p{exclude};
+    my $inject = $p{inject};
 
     my $des_use = Devel::Examine::Subs->new(file => $file,);
 
@@ -137,6 +136,8 @@ sub install_trace {
                                         file => $file,
                                         extensions => $extensions,
                                      );
+
+    $inject = $p->{inject} || _inject_code();
 
     $des->inject(
         inject_after_sub_def => _inject_code(),
@@ -307,6 +308,10 @@ CAUTION: this will edit live production files.
 C<extensions =E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
 and C<.pl> files. Specify only the extensions you want by adding them into this
 array reference, less the dot.
+
+<inject =E<gt> ['your code here;', 'more code;']> - The lines of code supplied
+here will override the default. Note that C<remove_trace()> will not remove
+these lines, and for uninstall, you'll have to manually delete them.
 
 =head2 C<remove_trace>
 
