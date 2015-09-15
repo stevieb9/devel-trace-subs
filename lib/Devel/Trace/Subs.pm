@@ -328,7 +328,7 @@ Where 'filename' can be the name of a file, a directory or a 'Module::Name'.
 
 One-liner to install into a live module:
 
-    sudo perl -MDevel::Trace::Subs=install_trace -e 'install_trace(file => "Data::Dumper");
+    sudo perl -MDevel::Trace::Subs=install_trace -e 'install_trace(file => "Data::Dump");
 
 One-liner to test that it worked:
 
@@ -336,7 +336,7 @@ One-liner to test that it worked:
 
 One-liner to uninstall:
 
-    sudo perl -MDevel::Trace::Subs=remove_trace -e 'remove_trace(file => "Data::Dumper");
+    sudo perl -MDevel::Trace::Subs=remove_trace -e 'remove_trace(file => "Data::Dump");
 
 Install into all C<*.pm> files in a directory structure:
 
