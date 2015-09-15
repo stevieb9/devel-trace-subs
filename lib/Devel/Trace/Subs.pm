@@ -309,7 +309,7 @@ C<extensions =E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
 and C<.pl> files. Specify only the extensions you want by adding them into this
 array reference, less the dot.
 
-<inject =E<gt> ['your code here;', 'more code;']> - The lines of code supplied
+C<inject =E<gt> ['your code here;', 'more code;']> - The lines of code supplied
 here will override the default. Note that C<remove_trace()> will not remove
 these lines, and for uninstall, you'll have to manually delete them.
 
@@ -328,15 +328,15 @@ Where 'filename' can be the name of a file, a directory or a 'Module::Name'.
 
 One-liner to install into a live module:
 
-    sudo perl -MDevel::Trace::Subs=install_trace -e 'install_trace(file => "Data::Dump");
+    sudo perl -MDevel::Trace::Subs=install_trace -e 'install_trace(file => "Data::Dump");'
 
 One-liner to test that it worked:
 
-    perl -MDevel::Trace::Subs=trace_dump -e '$ENV{DTS_TRACE}=1; dd {a=>1}; trace_dump();'
+    perl -MData::Dump -MDevel::Trace::Subs=trace_dump -e '$ENV{DTS_TRACE}=1; dd {a=>1}; trace_dump();'
 
 One-liner to uninstall:
 
-    sudo perl -MDevel::Trace::Subs=remove_trace -e 'remove_trace(file => "Data::Dump");
+    sudo perl -MDevel::Trace::Subs=remove_trace -e 'remove_trace(file => "Data::Dump");'
 
 Install into all C<*.pm> files in a directory structure:
 

@@ -4,8 +4,12 @@ use strict;
 
 use Devel::Trace::Subs qw(install_trace remove_trace trace_dump);
 
+my $remove = $ARGV[0] if $ARGV[0];
 
-install_trace(file => 'Data::Dump');
-
-remove_trace(file => 'Data::Dump');
+if (! $remove){
+    install_trace(file => 'Data::Dump');
+}
+else {
+    remove_trace(file => 'Data::Dump');
+}
 
