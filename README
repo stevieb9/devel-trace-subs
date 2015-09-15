@@ -146,7 +146,8 @@ EXAMPLES
                  );
 
     See the files in the distributions examples directory for other
-    examples.
+    examples, and the announcement at PerlMonks
+    http://perlmonks.org/?node_id=1141854.
 
 AUTHOR
 
@@ -175,14 +176,6 @@ SUPPORT
       * RT: CPAN's request tracker (report bugs here)
 
       http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Subs
-
-      * AnnoCPAN: Annotated CPAN documentation
-
-      http://annocpan.org/dist/Devel-Trace-Subs
-
-      * CPAN Ratings
-
-      http://cpanratings.perl.org/d/Devel-Trace-Subs
 
       * Search CPAN
 

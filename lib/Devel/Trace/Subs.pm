@@ -350,7 +350,7 @@ Install into all C<*.pm> files in a directory structure:
                 extensions => ['pm'],
              );
 
-See the files in the distributions C<examples> directory for other examples.
+See the files in the distributions C<examples> directory for other examples, and the announcement at PerlMonks L<http://perlmonks.org/?node_id=1141854>.
 
 =head1 AUTHOR
 
@@ -382,14 +382,6 @@ You can also look for information at:
 =item * RT: CPAN's request tracker (report bugs here)
 
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Subs>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Devel-Trace-Subs>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Devel-Trace-Subs>
 
 =item * Search CPAN
 
