@@ -17,8 +17,8 @@ pm_to_blib
 Devel-Trace-Subs-*
 Devel-Trace-Subs-*.tar.gz
 README.bak
-~$
+*~
 .idea/
-.bak$
-.old$
-iml$
+.bak
+.old
+*.iml
