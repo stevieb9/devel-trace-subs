@@ -140,7 +140,7 @@ sub install_trace {
     $inject = $p{inject} || _inject_code();
 
     $des->inject(
-        inject_after_sub_def => _inject_code(),
+        inject_after_sub_def => $inject,
     );
 }
 sub remove_trace {
