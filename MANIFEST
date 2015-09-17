@@ -5,7 +5,6 @@ examples/dump.pl
 examples/inject.pl
 examples/inject_with_custom_code.pl
 examples/remove.pl
-ignore.txt
 lib/Devel/Trace/Subs.pm
 lib/Devel/Trace/Subs/HTML.pm
 lib/Devel/Trace/Subs/Text.pm
