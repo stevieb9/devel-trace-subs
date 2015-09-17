@@ -2,6 +2,7 @@ Revision history for Devel-Trace-Subs
 
 0.12    2015-09-17
         - min perl ver required: 5.12
+        - fixed Makefile.PL to fix tests on MSWin32 platform
 
 0.10    2015-09-15
         - moved repo from bitbucket to https://github.com/stevieb9/devel-trace-subs

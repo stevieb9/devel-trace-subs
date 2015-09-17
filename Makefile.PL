@@ -1,7 +1,11 @@
 use 5.012;
 use strict;
 use warnings;
+
+use Cwd;
 use ExtUtils::MakeMaker;
+use File::Find;
+use Tie::File;
 
 WriteMakefile(
     NAME             => 'Devel::Trace::Subs',
@@ -12,7 +16,10 @@ WriteMakefile(
     PL_FILES         => {},
     MIN_PERL_VERSION => '5.012',
     CONFIGURE_REQUIRES => {
+        'Cwd' => 0,
         'ExtUtils::MakeMaker' => 0,
+        'File::Find' => 0,
+        'Tie::File' => 0,
     },
     META_MERGE => {
         'meta-spec' => { version => 2 },
@@ -35,3 +42,35 @@ WriteMakefile(
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Devel-Trace-Subs-*' },
 );
+
+if ($^O eq 'MSWin32'){
+
+    print "\nPreparing unit tests for MSWin32 platform...\n\n";
+
+    my $dir = getcwd(); 
+    $dir .= "/t";
+ 
+    my @files;
+
+    find({wanted => sub {
+            return if ! -f;
+
+            my $file = $File::Find::name;
+
+            push @files, $file;
+        },
+        no_chdir => 1,
+      }, $dir,
+    );
+
+    for (@files){
+        tie my @file, 'Tie::File', $_ or die $!;
+
+        for (@file){
+            s/\n/\r\n/g;
+        }
+
+        untie @file;
+    }
+}
+
