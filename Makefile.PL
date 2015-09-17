@@ -1,4 +1,4 @@
-use 5.010;
+use 5.012;
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
@@ -10,7 +10,7 @@ WriteMakefile(
     ABSTRACT_FROM    => 'lib/Devel/Trace/Subs.pm',
     LICENSE          => 'artistic_2',
     PL_FILES         => {},
-    MIN_PERL_VERSION => 5.010,
+    MIN_PERL_VERSION => '5.012',
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
     },
