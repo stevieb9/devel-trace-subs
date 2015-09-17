@@ -47,17 +47,12 @@ if ($^O eq 'MSWin32'){
 
     print "\nPreparing unit tests for MSWin32 platform...\n\n";
 
-    my $dir = getcwd(); 
-    $dir .= "/t";
+    my $dir = getcwd() . 't/';
  
     my @files;
 
     find({wanted => sub {
-            return if ! -f;
-
-            my $file = $File::Find::name;
-
-            push @files, $file;
+            push @files, $File::Find::name if -f;
         },
         no_chdir => 1,
       }, $dir,
