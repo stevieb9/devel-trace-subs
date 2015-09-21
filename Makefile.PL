@@ -5,7 +5,6 @@ use warnings;
 use Cwd;
 use ExtUtils::MakeMaker;
 use File::Find;
-use Tie::File;
 
 WriteMakefile(
     NAME             => 'Devel::Trace::Subs',
