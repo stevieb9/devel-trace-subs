@@ -6,26 +6,29 @@ NAME
 SYNOPSIS
 
         use Devel::Trace::Subs qw(trace);
-    
-        # add a trace() call to the top of all your subs
-    
+
+    Add a trace() call to the top of all your subs
+
         trace(); # or even better: $trace() if $ENV{DTS_ENABLE};
-    
-        # enable the module anywhere in the stack (preferably the calling script)
-    
+
+    Enable the module anywhere in the stack (preferably the calling script)
+
         $ENV{DTS_ENABLE} = 1;
-    
-        # then from anywhere (typically near the end of the calling script) dump the output
-    
+
+    From anywhere (typically near the end of the calling script) dump the
+    output
+
         trace_dump();
-    
-        # automate the installation into a file (or all files in a directory)
-    
+
+    Automate the installation into a file (or all files in a directory)
+
         install_trace(file => 'filename'); # or directory, or 'Module::Name'
-    
-        # remove the effects of install_trace()
-    
+
+    Remove the effects of install_trace()
+
         remove_trace(file => 'filename')
+
+    See EXAMPLES for further information
 
 DESCRIPTION
 
