@@ -1,4 +1,4 @@
-package Devel::Trace::Subs;
+package Devel::Trace::Subs 0.13;
 use 5.012;
 use strict;
 use warnings;
@@ -17,8 +17,6 @@ our @EXPORT_OK = qw(
                     install_trace
                     remove_trace
                 );
-
-our $VERSION = '0.13';
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 

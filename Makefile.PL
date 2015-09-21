@@ -35,7 +35,7 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Devel::Examine::Subs' => '1.33',
+        'Devel::Examine::Subs' => '1.39',
         'HTML::Template' => 0,
         'Template' => 0,
     },
@@ -64,7 +64,6 @@ if ($^O eq 'MSWin32'){
         for (@file){
             s/\n/\r\n/g;
         }
-
         untie @file;
     }
 }

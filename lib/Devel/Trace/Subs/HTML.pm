@@ -1,4 +1,5 @@
-package Devel::Trace::Subs::HTML;
+package Devel::Trace::Subs::HTML 0.13;
+use 5.012;
 use strict;
 use warnings;
 
@@ -8,8 +9,6 @@ use HTML::Template;
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(html);
-
-our $VERSION = '0.13';
 
 my (@stack_tpl, @flow_tpl, @all_tpl);
 

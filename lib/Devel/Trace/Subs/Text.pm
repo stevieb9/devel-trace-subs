@@ -1,4 +1,5 @@
-package Devel::Trace::Subs::Text;
+package Devel::Trace::Subs::Text 0.13;
+use 5.012;
 use strict;
 use warnings;
 
@@ -8,8 +9,6 @@ use Template;
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(text);
-
-our $VERSION = '0.13';
 
 my ($stack_tpl, $flow_tpl, $all_tpl);
 
