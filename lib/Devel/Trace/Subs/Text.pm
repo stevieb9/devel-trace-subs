@@ -1,4 +1,4 @@
-package Devel::Trace::Subs::Text 0.15;
+package Devel::Trace::Subs::Text 0.16;
 use 5.012;
 use strict;
 use warnings;
