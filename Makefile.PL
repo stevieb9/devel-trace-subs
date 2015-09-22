@@ -34,36 +34,10 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Devel::Examine::Subs' => '1.39',
+        'Devel::Examine::Subs' => '1.43',
         'HTML::Template' => 0,
         'Template' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Devel-Trace-Subs-*' },
 );
-__END__
-if ($^O eq 'MSWin32'){
-
-    print "\nPreparing unit tests for MSWin32 platform...\n\n";
-
-    my $dir = getcwd() . 't/';
- 
-    my @files;
-
-    find({wanted => sub {
-            push @files, $File::Find::name if -f;
-        },
-        no_chdir => 1,
-      }, $dir,
-    );
-
-    for (@files){
-        tie my @file, 'Tie::File', $_ or die $!;
-
-        for (@file){
-            s/\n/\r\n/g;
-        }
-        untie @file;
-    }
-}
-

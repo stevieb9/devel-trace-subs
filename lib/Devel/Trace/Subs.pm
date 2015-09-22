@@ -1,4 +1,4 @@
-package Devel::Trace::Subs 0.14;
+package Devel::Trace::Subs 0.15;
 use 5.012;
 use strict;
 use warnings;
@@ -207,7 +207,7 @@ traces.
 
 =head1 SYNOPSIS
 
-    use Devel::Trace::Subs qw(trace);
+    use Devel::Trace::Subs qw(trace trace_dump install_trace remove_trace);
 
 Add a trace() call to the top of all your subs
 
@@ -387,9 +387,6 @@ L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Devel-Trace-Subs>
 L<http://search.cpan.org/dist/Devel-Trace-Subs/>
 
 =back
-
-
-=head1 ACKNOWLEDGEMENTS
 
 
 =head1 LICENSE AND COPYRIGHT

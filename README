@@ -5,7 +5,7 @@ NAME
 
 SYNOPSIS
 
-        use Devel::Trace::Subs qw(trace);
+        use Devel::Trace::Subs qw(trace trace_dump install_trace remove_trace);
 
     Add a trace() call to the top of all your subs
 
@@ -183,8 +183,6 @@ SUPPORT
       * Search CPAN
 
       http://search.cpan.org/dist/Devel-Trace-Subs/
-
-ACKNOWLEDGEMENTS
 
 LICENSE AND COPYRIGHT
 
