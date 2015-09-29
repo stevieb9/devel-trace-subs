@@ -24,16 +24,20 @@ sub trace {
 
     return unless $ENV{DTS_ENABLE};
 
+    my $flush_flow = $ENV{DTS_FLUSH_FLOW};
+
     _env();
 
     my $data = _store();
 
     my $flow_count = ++$ENV{DTS_FLOW_COUNT};
 
-    push @{$data->{flow}}, {
-                            name => $flow_count,
-                            value => (caller(1))[3] || 'main()'
-                        };
+    my $flow = {
+                 name => $flow_count,
+                 value => (caller(1))[3] || 'main()'
+               };
+
+    push @{$data->{flow}}, $flow;
 
     push @{$data->{stack}}, {
         in       => (caller(1))[3] || '-',
@@ -44,6 +48,10 @@ sub trace {
     };
 
     _store($data);
+
+    if ($flush_flow){
+        print "\n** $flow->{name} :: $flow->{value} **\n";
+    }
 
     if (defined wantarray){
         return $data;
@@ -269,6 +277,10 @@ Note: It is best to write the call to this function within an C<if> statement, e
 C<trace() if $ENV{DTS_ENABLE};>. That way, if you decide to disable tracing,
 you'll short circuit the process of having the module's C<trace()> function
 being loaded and doing this for you.
+
+If you set C<$ENV{DTS_FLUSH_FLOW}> to a true value, we'll print to STDOUT a single 
+line of code flow during each C<trace()> call. This helps in figuring out where a
+program is having trouble, but the program itself isn't outputting anything useful.
 
 =head2 C<trace_dump>
 

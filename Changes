@@ -1,5 +1,9 @@
 Revision history for Devel-Trace-Subs
 
+0.16    2015-xxxx
+        - setting $ENV{DTS_FLUSH_FLOW} = 1 will now output a single line
+          of codeflow info each time trace() is called
+
 0.12    2015-09-17
         - min perl ver required: 5.12
         - fixed Makefile.PL to fix tests on MSWin32 platform

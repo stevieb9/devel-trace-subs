@@ -69,6 +69,11 @@ FUNCTIONS
     disable tracing, you'll short circuit the process of having the
     module's trace() function being loaded and doing this for you.
 
+    If you set $ENV{DTS_FLUSH_FLOW} to a true value, we'll print to STDOUT
+    a single line of code flow during each trace() call. This helps in
+    figuring out where a program is having trouble, but the program itself
+    isn't outputting anything useful.
+
  trace_dump
 
     Dumps the output of the collected data.
