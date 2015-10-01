@@ -25,9 +25,6 @@ before install:
 before_script:
     - coverage-setup
 
-install:
-    - cpan-install --deps
-
 script:
     - perl Makefile.PL
     - make
