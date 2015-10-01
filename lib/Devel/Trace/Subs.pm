@@ -381,7 +381,9 @@ L<https://github.com/stevieb9/devel-trace-subs>
 
 =head1 BUILD REPORTS
 
-L<https://travis-ci.org/stevieb9/devel-trace-subs>
+Travis-CI: L<https://travis-ci.org/stevieb9/devel-trace-subs>
+
+CPAN Testers: L<http://matrix.cpantesters.org/?dist=Devel-Trace-Subs>
 
 =head1 SUPPORT
 
