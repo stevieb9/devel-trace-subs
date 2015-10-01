@@ -1,6 +1,5 @@
 language: perl
 perl:
-    - "5.23"
     - "5.22"
     - "5.20"
     - "5.18"
@@ -11,11 +10,5 @@ perl:
 
 os:
     - linux
-    - osx
 
 sudo: required
-
-before_install:
-    - curl -L https://cpanmin.us/ -o cpanm
-    - chmod +x cpanm
-    - sudo mv cpanm /usr/bin
