@@ -17,6 +17,21 @@ sudo: required
 before install:
     - git clone https://github.com/travis-perl/helpers ~/travis-perl-helpers
     - source ~travis-perl-helpers/init --auto
+    - build-perl
+    - perl -V
+    - build-dist
+    - cd $BUILD_DIR
+
+before_script:
+    - coverage-setup
 
 install:
     - cpan-install --deps
+
+script:
+    - perl Makefile.PL
+    - make
+    - make test
+ 
+after_success:
+    - coverage-report
