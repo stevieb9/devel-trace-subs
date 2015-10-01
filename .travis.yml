@@ -17,3 +17,6 @@ sudo: required
 before install:
     - git clone https://github.com/travis-perl/helpers ~/travis-perl-helpers
     - source ~travis-perl-helpers/init --auto
+
+install:
+    - cpan-install --deps
