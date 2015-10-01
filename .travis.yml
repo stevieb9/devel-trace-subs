@@ -1,7 +1,5 @@
 language: perl
 perl:
-    - "blead"
-    - "5.22"
     - "5.20"
     - "5.18"
     - "5.16"
@@ -12,17 +10,3 @@ perl:
 os:
     - linux
 
-sudo: required
-
-before install:
-    - git clone https://github.com/travis-perl/helpers ~/travis-perl-helpers
-    - source ~travis-perl-helpers/init --auto
-    - build-perl
-    - perl -V
-    - build-dist
-    - cd $BUILD_DIR
-
-script:
-    - perl Makefile.PL
-    - make
-    - make test
