@@ -23,3 +23,4 @@ README.bak$
 .idea/
 .git/
 .gitignore$
+.travis.yml$
