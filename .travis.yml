@@ -22,13 +22,7 @@ before install:
     - build-dist
     - cd $BUILD_DIR
 
-before_script:
-    - coverage-setup
-
 script:
     - perl Makefile.PL
     - make
     - make test
- 
-after_success:
-    - coverage-report
