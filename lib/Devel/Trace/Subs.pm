@@ -379,6 +379,10 @@ bug as I make changes.
 
 L<https://github.com/stevieb9/devel-trace-subs>
 
+=head1 BUILD REPORTS
+
+L<https://travis-ci.org/stevieb9/devel-trace-subs>
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.

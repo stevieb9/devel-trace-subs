@@ -173,6 +173,10 @@ REPOSITORY
 
     https://github.com/stevieb9/devel-trace-subs
 
+BUILD REPORTS
+
+    https://travis-ci.org/stevieb9/devel-trace-subs
+
 SUPPORT
 
     You can find documentation for this module with the perldoc command.
