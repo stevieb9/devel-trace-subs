@@ -1,5 +1,6 @@
 language: perl
 perl:
+    - "blead"
     - "5.22"
     - "5.20"
     - "5.18"
@@ -12,3 +13,7 @@ os:
     - linux
 
 sudo: required
+
+before install:
+    - git clone https://github.com/travis-perl/helpers ~/travis-perl-helpers
+    - source ~travis-perl-helpers/init --auto
