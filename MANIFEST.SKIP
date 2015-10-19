@@ -24,3 +24,5 @@ README.bak$
 .git/
 .gitignore$
 .travis.yml$
+examples/
+.bak$

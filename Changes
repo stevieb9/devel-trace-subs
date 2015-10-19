@@ -1,7 +1,7 @@
 Revision history for Devel-Trace-Subs
 
 0.17    2015-09-30
-        - bumped DES req to 1.46
+        - bumped DES req to 1.54
 
 0.16    2015-09-30
         - setting $ENV{DTS_FLUSH_FLOW} = 1 will now output a single line

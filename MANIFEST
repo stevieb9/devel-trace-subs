@@ -1,16 +1,10 @@
 Changes
-examples/building.pl
-examples/des.pl
-examples/dump.pl
-examples/inject.pl
-examples/inject_with_custom_code.pl
-examples/remove.pl
+check.pl
 lib/Devel/Trace/Subs.pm
 lib/Devel/Trace/Subs/HTML.pm
 lib/Devel/Trace/Subs/Text.pm
 Makefile.PL
 MANIFEST			This list of files
-MANIFEST.bak
 MANIFEST.SKIP
 README
 src/templates/flow.tpl
