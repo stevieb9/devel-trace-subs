@@ -1,5 +1,5 @@
 package Devel::Trace::Subs::HTML 0.18;
-use 5.012;
+use 5.008;
 use strict;
 use warnings;
 

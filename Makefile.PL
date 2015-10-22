@@ -1,4 +1,4 @@
-use 5.012;
+use 5.008;
 use strict;
 use warnings;
 
@@ -13,7 +13,7 @@ WriteMakefile(
     ABSTRACT_FROM    => 'lib/Devel/Trace/Subs.pm',
     LICENSE          => 'artistic_2',
     PL_FILES         => {},
-    MIN_PERL_VERSION => '5.012',
+    MIN_PERL_VERSION => '5.008',
     CONFIGURE_REQUIRES => {
         'Cwd' => 0,
         'ExtUtils::MakeMaker' => 0,
@@ -34,7 +34,7 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Devel::Examine::Subs' => '1.54',
+        'Devel::Examine::Subs' => '1.55',
         'HTML::Template' => 0,
         'Template' => 0,
     },
