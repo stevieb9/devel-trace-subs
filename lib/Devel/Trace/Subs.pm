@@ -2,7 +2,7 @@ package Devel::Trace::Subs 0.18;
 use 5.008;
 use strict;
 use warnings;
-
+1;
 use Data::Dumper;
 use Devel::Examine::Subs;
 use Devel::Trace::Subs::HTML qw(html);
