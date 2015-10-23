@@ -7,7 +7,7 @@ use Data::Dumper;
 use Exporter;
 use Template;
 
-our $VERSION = '0.18';
+our $VERSION = '0.19';
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(text);
 

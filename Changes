@@ -1,5 +1,10 @@
 Revision history for Devel-Trace-Subs
 
+0.18    2015-10-23
+        - no functional changes
+        - refactored to work on perl v5.8+, previously we only ran on
+          v5.12+
+
 0.17    2015-09-30
         - bumped DES req to 1.54
 

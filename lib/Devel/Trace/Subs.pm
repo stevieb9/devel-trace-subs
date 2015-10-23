@@ -10,7 +10,7 @@ use Devel::Trace::Subs::Text qw(text);
 use Exporter;
 use Storable;
 
-our $VERSION = '0.18';
+our $VERSION = '0.19';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
@@ -239,7 +239,7 @@ Remove the effects of install_trace()
 
     remove_trace(file => 'filename')
 
-See L<EXAMPLES> for further information
+See L<EXAMPLES|Devel::Trace::Subs/EXAMPLES> for further details.
 
 =head1 DESCRIPTION
 
@@ -256,7 +256,7 @@ mentioned above.
 
 =head1 EXPORT
 
-None by default. See L<EXPORT_OK>
+None by default. See L<EXPORT_OK|Devel::Trace::Subs/EXPORT_OK>.
 
 =head1 EXPORT_OK
 
@@ -318,9 +318,9 @@ C<.pl> and C<.pm> files underneath of it (by default). If filename is a
 'Module::Name', we'll load the file for that module dynamically, and modify it. 
 CAUTION: this will edit live production files.
 
-C<extensions =E<gt> ['pl', 'pm']> - Optional: By default, we change all C<.pm>
-and C<.pl> files. Specify only the extensions you want by adding them into this
-array reference, less the dot.
+C<extensions =E<gt> ['*.pl', '*.pm']> - Optional: By default, we change all C<*.pm>
+and C<*.pl> files. Specify only the extensions you want by adding them into this
+array reference.
 
 C<inject =E<gt> ['your code here;', 'more code;']> - The lines of code supplied
 here will override the default. Note that C<remove_trace()> will not remove
@@ -360,10 +360,9 @@ Install into all C<*.pm> files in a directory structure:
 
     install_trace(
                 file => '/path/to/files/',
-                extensions => ['pm'],
+                extensions => ['*.pm'],
              );
 
-See the files in the distributions C<examples> directory for other examples, and the announcement at PerlMonks L<http://perlmonks.org/?node_id=1141854>.
 
 =head1 AUTHOR
 

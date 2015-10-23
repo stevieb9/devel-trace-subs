@@ -5,7 +5,7 @@ use warnings;
 
 use File::Copy;
 
-use Test::More tests => 57;
+use Test::More tests => 229;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
@@ -13,26 +13,113 @@ BEGIN {
 
 use Devel::Trace::Subs qw(install_trace);
 
-my $orig = 't/install_trace_orig.pl';
-my $work = 't/install_trace.pl';
-my $base = 't/orig/install_trace.pl';
+eval { mkdir 't/ext' or die "can't create t/ext test dir!: $!"; };
+is ($@, '', "successfully created t/ext test dir");
+$@ = '';
 
-copy $orig, $work;
+{
+    my $orig = 't/install_trace_orig.pl';
+    my $work = 't/install_trace.pl';
+    my $base = 't/orig/install_trace.pl';
 
-install_trace(file => $work);
+    copy $orig, $work;
 
-open my $work_fh, '<', $work or die $!;
-open my $base_fh, '<', $base or die $!;
+    install_trace(file => $work);
 
-my @work = <$work_fh>;
-my @base = <$base_fh>;
+    open my $work_fh, '<', $work or die $!;
+    open my $base_fh, '<', $base or die $!;
 
-close $work_fh;
-close $base_fh;
+    my @work = <$work_fh>;
+    my @base = <$base_fh>;
 
-my $i = -1;
+    close $work_fh;
+    close $base_fh;
 
-for my $e (@work){
-    $i++;
-    ok ($e eq $base[$i], "work line $i matches base")
+    my $i = -1;
+
+    for my $e (@work){
+        $i++;
+        ok ($e eq $base[$i], "work line $i matches base")
+    }
 }
+{
+    my $orig = 't/install_trace_orig.pl';
+    my $in_pl = 't/ext/install_trace.pl';
+    my $in_pm = 't/ext/install_trace.pm';
+    my $base = 't/orig/install_trace.pl';
+    my $dir = 't/ext';
+
+    copy $orig, $in_pl;
+    copy $orig, $in_pm;
+
+    install_trace(file => $dir, extensions => [qw(*.pm)]);
+
+    open my $in_pl_fh, '<', $in_pl or die $!;
+    open my $in_pm_fh, '<', $in_pm or die $!;
+    open my $base_fh, '<', $base or die $!;
+
+    my @in_pl = <$in_pl_fh>;
+    my @in_pm = <$in_pm_fh>;
+    my @base = <$base_fh>;
+
+    close $in_pl_fh;
+    close $in_pm_fh;
+    close $base_fh;
+
+    my $i = -1;
+    for my $e (@base){
+        $i++;
+        ok ($e eq $in_pm[$i], "work line $i matches base")
+    }
+
+    is (@base, @in_pm, "with *.pm extension, file is correct");
+    is (@base - @in_pl, 6, "with *.pm extension, *.pl is untouched");
+}
+{
+    my $orig = 't/install_trace_orig.pl';
+    my $in_pl = 't/ext/install_trace.pl';
+    my $in_pm = 't/ext/install_trace.pm';
+    my $base = 't/orig/install_trace.pl';
+    my $dir = 't/ext';
+
+    copy $orig, $in_pl;
+    copy $orig, $in_pm;
+
+    install_trace(file => $dir, extensions => [qw(*.pm *.pl)]);
+
+    open my $in_pl_fh, '<', $in_pl or die $!;
+    open my $in_pm_fh, '<', $in_pm or die $!;
+    open my $base_fh, '<', $base or die $!;
+
+    my @in_pl = <$in_pl_fh>;
+    my @in_pm = <$in_pm_fh>;
+    my @base = <$base_fh>;
+
+    close $in_pl_fh;
+    close $in_pm_fh;
+    close $base_fh;
+
+    my $i = -1;
+    for my $e (@base){
+        $i++;
+        ok ($e eq $in_pm[$i], "work line $i matches base in pm with exts *.pm & *.pl");
+        ok ($e eq $in_pl[$i], "work line $i matches base in pl with exts *.pm & *.pl");
+    }
+
+    is (@base, @in_pm, "with *.pm and *.pl extension, files are correct");
+}
+
+__END__
+
+# we need these files in t/04
+
+my @files = qw(
+                t/ext/install_trace.pl
+                t/ext/install_trace.pm
+);
+
+for (@files){
+    eval { unlink $_ or die "can't unlink test file $_: $!"; };
+    is ($@, '', "unlinked $_ test file ok");
+}
+
