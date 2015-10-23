@@ -320,7 +320,7 @@ CAUTION: this will edit live production files.
 
 C<extensions =E<gt> ['*.pl', '*.pm']> - Optional: By default, we change all C<*.pm>
 and C<*.pl> files. Specify only the extensions you want by adding them into this
-array reference.
+array reference. Anything that C<File::Find::Rule::name()> accepts can be passed in here.
 
 C<inject =E<gt> ['your code here;', 'more code;']> - The lines of code supplied
 here will override the default. Note that C<remove_trace()> will not remove

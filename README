@@ -110,7 +110,8 @@ FUNCTIONS
 
     extensions => ['*.pl', '*.pm'] - Optional: By default, we change all
     *.pm and *.pl files. Specify only the extensions you want by adding
-    them into this array reference.
+    them into this array reference. Anything that File::Find::Rule::name()
+    accepts can be passed in here.
 
     inject => ['your code here;', 'more code;'] - The lines of code
     supplied here will override the default. Note that remove_trace() will
