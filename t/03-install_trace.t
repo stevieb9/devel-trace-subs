@@ -30,6 +30,9 @@ my @base = <$base_fh>;
 close $work_fh;
 close $base_fh;
 
-while (my ($i, $e) = each @work){
+my $i = -1;
+
+for my $e (@work){
+    $i++;
     ok ($e eq $base[$i], "work line $i matches base")
 }
