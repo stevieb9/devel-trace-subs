@@ -10,7 +10,7 @@ use Devel::Trace::Subs::Text qw(text);
 use Exporter;
 use Storable;
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(

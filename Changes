@@ -1,5 +1,11 @@
 Revision history for Devel-Trace-Subs
 
+0.19    2015-10-23
+        - modified pod to reflect Devel::Examine::Subs API change in
+          handling 'extensions'. We now accept anything that File::Find::Rule::name()
+          accepts within this param
+        - numerous tests added to test against extension param functionality
+
 0.18    2015-10-23
         - no functional changes
         - refactored to work on perl v5.8+, previously we only ran on
