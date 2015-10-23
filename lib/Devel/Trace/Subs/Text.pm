@@ -1,4 +1,4 @@
-package Devel::Trace::Subs::Text 0.18;
+package Devel::Trace::Subs::Text;
 use 5.008;
 use strict;
 use warnings;
@@ -7,6 +7,7 @@ use Data::Dumper;
 use Exporter;
 use Template;
 
+our $VERSION = '0.18';
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(text);
 

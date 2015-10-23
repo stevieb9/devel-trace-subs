@@ -1,4 +1,4 @@
-package Devel::Trace::Subs::HTML 0.18;
+package Devel::Trace::Subs::HTML;
 use 5.008;
 use strict;
 use warnings;
@@ -6,6 +6,8 @@ use warnings;
 use Data::Dumper;
 use Exporter;
 use HTML::Template;
+
+our $VERSION = '0.18';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(html);

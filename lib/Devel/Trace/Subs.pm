@@ -1,4 +1,4 @@
-package Devel::Trace::Subs 0.18;
+package Devel::Trace::Subs;
 use 5.008;
 use strict;
 use warnings;
@@ -9,6 +9,8 @@ use Devel::Trace::Subs::HTML qw(html);
 use Devel::Trace::Subs::Text qw(text);
 use Exporter;
 use Storable;
+
+our $VERSION = '0.18';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
