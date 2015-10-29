@@ -4,13 +4,13 @@ use strict;
 use warnings;
 
 use Data::Dumper;
-use Devel::Examine::Subs;
 use Devel::Trace::Subs::HTML qw(html);
 use Devel::Trace::Subs::Text qw(text);
 use Exporter;
 use Storable;
+use Symbol qw(delete_package);
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
@@ -126,6 +126,15 @@ sub trace_dump {
 }
 sub install_trace {
 
+    eval {
+        require Devel::Examine::Subs;
+        Devel::Examine::Subs->import();
+    };
+
+    if ($@){
+        die "can't load Devel::Examine::Subs!: $@";
+    }
+
     my %p = @_;
 
     my $file = $p{file};
@@ -150,9 +159,19 @@ sub install_trace {
     $des->inject(
         inject_after_sub_def => $inject,
     );
+    
 }
 sub remove_trace {
-    
+ 
+    eval {
+        require Devel::Examine::Subs;
+        Devel::Examine::Subs->import();
+    };
+
+    if ($@){
+        die "can't load Devel::Examine::Subs!: $@";
+    }
+   
     my %p = @_;
     my $file = $p{file};
 

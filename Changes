@@ -1,5 +1,11 @@
 Revision history for Devel-Trace-Subs
 
+0.20    2015-10-29
+        - DES is now loaded from within eval() in install and remove only. This fixes
+          a bug where if DTS was loaded in a script before anything that uses DES,
+          *trace() would get clobbered and would be unavailable
+        - removed various PREREQ_PMs that are no longer required  
+
 0.19    2015-10-23
         - modified pod to reflect Devel::Examine::Subs API change in
           handling 'extensions'. We now accept anything that File::Find::Rule::name()

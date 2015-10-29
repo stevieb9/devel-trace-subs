@@ -2,9 +2,7 @@ use 5.008;
 use strict;
 use warnings;
 
-use Cwd;
 use ExtUtils::MakeMaker;
-use File::Find;
 
 WriteMakefile(
     NAME             => 'Devel::Trace::Subs',
@@ -17,8 +15,6 @@ WriteMakefile(
     CONFIGURE_REQUIRES => {
         'Cwd' => 0,
         'ExtUtils::MakeMaker' => 0,
-        'File::Find' => 0,
-        'Tie::File' => 0,
     },
     META_MERGE => {
         'meta-spec' => { version => 2 },
@@ -37,6 +33,7 @@ WriteMakefile(
         'Devel::Examine::Subs' => '1.55',
         'HTML::Template' => 0,
         'Template' => 0,
+        'Symbol' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Devel-Trace-Subs-*' },

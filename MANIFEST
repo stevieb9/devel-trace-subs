@@ -1,5 +1,4 @@
 Changes
-check.pl
 lib/Devel/Trace/Subs.pm
 lib/Devel/Trace/Subs/HTML.pm
 lib/Devel/Trace/Subs/Text.pm
