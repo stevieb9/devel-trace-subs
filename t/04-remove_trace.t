@@ -5,7 +5,7 @@ use warnings;
 
 use File::Copy;
 
-use Test::More tests => 152;
+use Test::More tests => 147;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
@@ -35,6 +35,7 @@ my $dir = 't/ext';
 
     for my $e (@work){
         $i++;
+        last if $i == 48;
         ok ($e eq $base[$i], "work line $i matches base")
     }
 }
@@ -56,6 +57,7 @@ my $dir = 't/ext';
 
     for my $e (@base){
         $i++;
+        last if $i == 47;
         ok ($e eq $pl[$i], "base line $i matches *.pl");
         ok ($e eq $pm[$i], "base line $i matches *.pm");
     }

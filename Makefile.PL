@@ -30,7 +30,7 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        'Devel::Examine::Subs' => '1.55',
+        'Devel::Examine::Subs' => '1.58',
         'HTML::Template' => 0,
         'Template' => 0,
         'Symbol' => 0,
