@@ -1,7 +1,7 @@
 Revision history for Devel-Trace-Subs
 
 0.21    2016-01-04
-        - no functional changes whatsoever
+        - no functional code changes
         - modified tests to work with DES 1.55 through 1.58 (CPAN Testers
           failure)
         - bumped req ver of DES to 1.58
