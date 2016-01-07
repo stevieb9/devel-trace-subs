@@ -5,7 +5,7 @@ use warnings;
 
 use File::Copy;
 use Mock::Sub;
-use Test::More tests => 7;
+use Test::More tests => 10;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
@@ -54,5 +54,31 @@ use Devel::Trace::Subs qw(trace trace_dump);
     close $fh;
     eval { unlink 't/orig/dump.txt' or die $!; };
     is ($@, '', "unlinked temp file ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    $ENV{DTS_FLUSH_FLOW} = 1;
 
+    my $new_std;
+    open my $stdout, '>', \$new_std or die $!;
+    my $old_std = select $stdout;
+
+    trace();
+
+    close $stdout;
+    select $old_std;
+
+    like ($new_std, qr/main()/, "DTS_FLUSH_FLOW env works");
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+
+    my $data = trace();
+
+    is (ref $data, 'HASH', 'asking for a return in trace() does the right thing');
+}
+{
+    undef $ENV{DTS_PID};
+    eval { trace_dump(); };
+    like ($@, qr/call trace_dump\(\) without calling trace/, "trace_dump() barfs properly if trace isn't called first");
 }
