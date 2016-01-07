@@ -176,6 +176,8 @@ BUILD REPORTS
 
     CPAN Testers: http://matrix.cpantesters.org/?dist=Devel-Trace-Subs
 
+    Coverage: https://coveralls.io/github/stevieb9/devel-trace-subs
+
 SUPPORT
 
     You can find documentation for this module with the perldoc command.
@@ -194,7 +196,7 @@ SUPPORT
 
 LICENSE AND COPYRIGHT
 
-    Copyright 2015 Steve Bertrand.
+    Copyright 2016 Steve Bertrand.
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of either: the GNU General Public License as published
