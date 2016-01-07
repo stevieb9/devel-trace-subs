@@ -27,7 +27,7 @@ install:
 before_script:
   - coverage-setup
 script:
-  - PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrsv t
+  - PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrv t
   - cover
     #  - perl Makefile.PL          # or Build.PL if it exists
     #  - make                      # or ./Build
