@@ -201,8 +201,7 @@ sub _store {
 
     my $data = shift;
 
-    my $pid = $ENV{DTS_PID} || shift;
-    my $store = "DTS_" . join('_', ($pid x 3)) . ".dat";
+    my $store = "DTS_" . join('_', ($$ x 3)) . ".dat";
 
     $ENV{DTS_STORE} = $store;
 
