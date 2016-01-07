@@ -16,7 +16,6 @@ use Devel::Trace::Subs qw(install_trace);
 eval { mkdir 't/ext' or die "can't create t/ext test dir!: $!"; };
 is ($@, '', "successfully created t/ext test dir");
 $@ = '';
-
 {
     my $orig = 't/install_trace_orig.pl';
     my $work = 't/install_trace.pl';
@@ -111,6 +110,8 @@ $@ = '';
 
     ok (@base == @in_pm || @base == @in_pm + 1, "with *.pm and *.pl extension, files are correct");
 }
+
+
 __END__
 
 # we need these files in t/04

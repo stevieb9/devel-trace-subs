@@ -5,7 +5,7 @@ use warnings;
 
 use File::Copy;
 use Mock::Sub;
-use Test::More tests => 10;
+use Test::More tests => 28;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
@@ -69,6 +69,8 @@ use Devel::Trace::Subs qw(trace trace_dump);
     select $old_std;
 
     like ($new_std, qr/main()/, "DTS_FLUSH_FLOW env works");
+
+    $ENV{DTS_FLUSH_FLOW} = 0;
 }
 {
     $ENV{DTS_ENABLE} = 1;
@@ -81,4 +83,170 @@ use Devel::Trace::Subs qw(trace trace_dump);
     undef $ENV{DTS_PID};
     eval { trace_dump(); };
     like ($@, qr/call trace_dump\(\) without calling trace/, "trace_dump() barfs properly if trace isn't called first");
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(want => 'stack', type => 'html', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[0], qr/<html>/, "type with html does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(want => 'stack', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[1], qr/Stack/, "no type in dump does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(want => 'flow', type => 'html', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[0], qr/<html>/, "type with html does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(want => 'flow', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[1], qr/Code /, "no type in dump does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(type => 'html', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[0], qr/<html>/, "type with html and no want does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[14], qr/Stack trace/, "no type or want in dump does the right thing");
+
+#    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+
+
+
+
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(want => 'stack', type => 'none', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[1], qr/Stack trace/, "type with bad entry does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(want => 'flow', type => 'badname', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[1], qr/Code flow/, "type with bad name does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
+}
+{
+    $ENV{DTS_ENABLE} = 1;
+    my $file = 't/test.tmp';
+
+    trace();
+
+    trace_dump(type => 'nonexist', file => $file);
+
+    open my $fh, '<', $file or die $!;
+
+    my @lines = <$fh>;
+    close $fh;
+
+    like ($lines[17], qr/Stack trace/, "type with bad name and no want does the right thing");
+
+    eval { unlink $file or die $!; };
+    is ($@, '', "temp file removed ok" );
 }
