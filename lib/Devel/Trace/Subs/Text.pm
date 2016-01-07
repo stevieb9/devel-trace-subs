@@ -121,4 +121,16 @@ Stack trace:
 [% END %]
 EOF
 }
+__END__
+
+=head1 NAME
+
+Devel::Trace::Subs::Text
+
+=head1 FUNCTIONS
+
+=head2 C<text(file => 'file.ext', want => 'string', data => HREF)>
+
+=cut
+
 1;

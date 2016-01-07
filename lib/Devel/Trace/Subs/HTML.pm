@@ -179,4 +179,17 @@ EOF
 </html>
 EOF
 }
+
+__END__
+
+=head1 NAME
+
+Devel::Trace::Subs::HTML
+
+=head1 FUNCTIONS
+
+=head2 C<html(file => 'file.ext', want => 'string', data => HREF)>
+
+=cut
+
 1;
