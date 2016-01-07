@@ -11,7 +11,6 @@ perl:
 
 os:
     - linux
-
 before_install:
   - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
   - source ~/travis-perl-helpers/init
@@ -25,6 +24,9 @@ install:
 before_script:
   - coverage-setup
 script:
+  - perl Makefile.PL          # or Build.PL if it exists
+  - make                      # or ./Build
+  - make test
   - prove -l -j$(test-jobs) $(test-files)   # parallel testing
 after_success:
   - coverage-report
