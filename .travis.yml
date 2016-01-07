@@ -19,22 +19,12 @@ before_install:
   - perl -V
   - build-dist
   - cd $BUILD_DIR             # $BUILD_DIR is set by the build-dist command
-
 install:
   - cpan-install --deps       # installs prereqs, including recommends
-  - cpan-install --coverage   # installs coverage prereqs, if enabled
-  - cpanm --quiet --notest Devel::Cover::Report::Coveralls
-  - cpanm --quiet --notest --installdeps .
-
+  - cpan-install --coverage   # installs converage prereqs, if enabled
 before_script:
   - coverage-setup
-
 script:
-  - PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrsv t
-  - perl Makefile.PL          # or Build.PL if it exists
-  - make                      # or ./Build
-  - make test
-  - cover
-
+  - prove -l -j$(test-jobs) $(test-files)   # parallel testing
 after_success:
-  - cover -report coveralls
+  - coverage-report
