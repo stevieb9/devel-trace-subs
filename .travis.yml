@@ -29,7 +29,7 @@ before_script:
   - coverage-setup
 
 script:
-  - PERL5OPT=-MDevel::Cover=-ignore "/Devel/Trace/Subs/HTML.pm" +ignore "/Devel/Trace/Subs/Text.pm" -coverage,statement,branch,condition,path,subroutine prove -lrv t
+  - PERL5OPT=-MDevel::Cover=-ignore,"/Devel/Trace/Subs/HTML.pm" +ignore,"/Devel/Trace/Subs/Text.pm" -coverage,statement,branch,condition,path,subroutine prove -lrv t
   - cover
 
 after_success:
@@ -38,5 +38,5 @@ after_success:
 
 matrix:
   include:
-    - perl: 5.18
+    - perl: 5.20
       env: COVERAGE=1
