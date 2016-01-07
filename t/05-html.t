@@ -4,7 +4,7 @@ use warnings;
 
 use Data::Dumper;
 use Storable;
-use Test::More tests => 18;
+use Test::More tests => 17;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs::HTML' ) || print "Bail out!\n";
@@ -29,7 +29,6 @@ is (ref $data, 'HASH', 'the test store data is correct');
     is (@lines, 29, "html output has correct lines for stack");
 
     _reset();
-
 }
 {
     html(file => $file, want => 'flow', data => $data->{flow});
@@ -54,7 +53,6 @@ is (ref $data, 'HASH', 'the test store data is correct');
     is (@lines, 43, "html output has correct lines for all");
 
     _reset();
-
 }
 {
     my $stdout_var;
@@ -105,9 +103,6 @@ is (ref $data, 'HASH', 'the test store data is correct');
 if (-f $file){
     _reset();
 }
-
-eval { unlink $store or die $!; };
-ok (! -f $store, "store unlinked successfully");
 
 sub _reset {
     eval { unlink $file or die !$; };

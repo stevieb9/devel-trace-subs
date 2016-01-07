@@ -36,8 +36,8 @@ sub text {
         else {
             $template->process(
                 \$stack_tpl,
-                {stack => $data}
-            );
+                {stack => $data},
+            ) || die $template->error;
         }
     }
     elsif ($want && $want eq 'flow') {
@@ -56,7 +56,7 @@ sub text {
             $template->process(
                 \$flow_tpl,
                 {flow => $data}
-            );
+            ) || die $template->error;
         }
     }
     else {

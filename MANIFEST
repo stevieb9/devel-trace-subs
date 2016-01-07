@@ -13,6 +13,8 @@ t/01-base_testing.t
 t/02-store.t
 t/03-install_trace.t
 t/04-remove_trace.t
+t/05-html.t
+t/06-text.t
 t/install_trace_orig.pl
 t/manifest.t
 t/orig/install_trace.pl
