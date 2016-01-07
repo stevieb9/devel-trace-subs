@@ -31,6 +31,8 @@ use Devel::Trace::Subs qw(trace trace_dump);
     copy $file, 't/orig/store.fil';
 }
 {
+    local $SIG{__WARN__} = sub { };
+
     $ENV{DTS_ENABLE} = 1;
 
     my $mock = Mock::Sub->new;
@@ -49,6 +51,7 @@ use Devel::Trace::Subs qw(trace trace_dump);
     like ($lines[9], qr/\s+sub:\s+-/, "ok");
     like ($lines[10], qr/\s+file:\s+-/, "ok");
 
+    close $fh;
     eval { unlink 't/orig/dump.txt' or die $!; };
     is ($@, '', "unlinked temp file ok" );
 
