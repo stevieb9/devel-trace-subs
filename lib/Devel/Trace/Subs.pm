@@ -405,6 +405,8 @@ Travis-CI: L<https://travis-ci.org/stevieb9/devel-trace-subs>
 
 CPAN Testers: L<http://matrix.cpantesters.org/?dist=Devel-Trace-Subs>
 
+Coverage: L<https://coveralls.io/github/stevieb9/devel-trace-subs>
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
