@@ -222,7 +222,7 @@ sub _store {
 sub _fold_placeholder {};
 
 END {
-#    unlink $ENV{DTS_STORE} if $ENV{DTS_STORE};
+    unlink $ENV{DTS_STORE} if $ENV{DTS_STORE};
 }
 
 __END__

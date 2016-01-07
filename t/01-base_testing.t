@@ -2,8 +2,8 @@
 use 5.006;
 use strict;
 use warnings;
-use Test::More;
 
+use File::Copy;
 use Test::More tests => 2;
 
 BEGIN {
@@ -21,5 +21,8 @@ use Devel::Trace::Subs qw(trace);
     my $env_pid = $ENV{DTS_PID} ;
 
     is ( $pid, $env_pid, "ENV PID is the same as ours" );
+
+    my $file = "DTS_" . join('_', ($$ x 3)) . ".dat";
+    copy $file, 't/orig/store.fil';
 }
 

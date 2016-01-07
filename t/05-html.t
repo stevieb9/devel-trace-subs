@@ -4,7 +4,7 @@ use warnings;
 
 use Data::Dumper;
 use Storable;
-use Test::More;
+use Test::More tests => 18;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs::HTML' ) || print "Bail out!\n";
@@ -105,6 +105,9 @@ is (ref $data, 'HASH', 'the test store data is correct');
 if (-f $file){
     _reset();
 }
+
+eval { unlink $store or die $!; };
+ok (! -f $store, "store unlinked successfully");
 
 sub _reset {
     eval { unlink $file or die !$; };
