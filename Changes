@@ -5,6 +5,8 @@ Revision history for Devel-Trace-Subs
         - modified tests to work with DES 1.55 through 1.58 (CPAN Testers
           failure)
         - bumped req ver of DES to 1.58
+        - build now requires Mock::Sub, due to adding significant tests for
+          coverage
 
 0.20    2015-10-29
         - DES is now loaded from within eval() in install and remove only. This fixes

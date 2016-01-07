@@ -27,6 +27,7 @@ WriteMakefile(
         },
     },
     BUILD_REQUIRES => {
+        'Mock::Sub' => '1.01',
         'Test::More' => 0,
     },
     PREREQ_PM => {
