@@ -4,7 +4,7 @@ use warnings;
 
 use Data::Dumper;
 use Storable;
-use Test::More tests => 14;
+use Test::More tests => 18;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs::Text' ) || print "Bail out!\n";
@@ -56,11 +56,20 @@ is (ref $data, 'HASH', 'the test store data is correct');
 }
 {
     my $ret = text(want => 'flow', data => $data->{flow});
-    is ($ret, 1, "template processed ok without file");
+    is ($ret, 1, "flow template processed ok without file");
     is (-f $file, undef, 'text output doesnt create a file with no file param');
 
 }
-
+{
+    my $ret = text(want => 'stack', data => $data->{stack});
+    is ($ret, 1, "stack template processed ok without file");
+    is (-f $file, undef, 'text output doesnt create a file with no file param');
+}
+{
+    my $ret = text(data => $data);
+    is ($ret, 1, "all template processed ok without file");
+    is (-f $file, undef, 'text output doesnt create a file with no file param');
+}
 if (-f $file){
     _reset();
 }

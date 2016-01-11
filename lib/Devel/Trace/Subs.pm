@@ -400,11 +400,15 @@ L<https://github.com/stevieb9/devel-trace-subs>
 
 =head1 BUILD REPORTS
 
-Travis-CI: L<https://travis-ci.org/stevieb9/devel-trace-subs>
+=begin html
+
+<a href="http://travis-ci.org/stevieb9/devel-trace-subs"><img src="https://secure.travis-ci.org/stevieb9/devel-trace-subs.png"/></a>
+
+<a href='https://coveralls.io/github/stevieb9/devel-trace-subs?branch=master'><img src='https://coveralls.io/repos/stevieb9/devel-trace-subs/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+
+=end html
 
 CPAN Testers: L<http://matrix.cpantesters.org/?dist=Devel-Trace-Subs>
-
-Coverage: L<https://coveralls.io/github/stevieb9/devel-trace-subs>
 
 =head1 SUPPORT
 
