@@ -5,7 +5,7 @@ use warnings;
 
 use File::Copy;
 
-use Test::More tests => 147;
+use Test::More tests => 149;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
@@ -62,7 +62,19 @@ my $dir = 't/ext';
         ok ($e eq $pm[$i], "base line $i matches *.pm");
     }
 }
+{
+    $ENV{EVAL_TEST} = 1;
+    eval { remove_trace(); };
+    like ($@, qr/can't load Devel::Examine::Subs/, "remove_trace() dies if there is an eval error");
 
+    delete $ENV{EVAL_TEST};
+
+    my $warning;
+    $SIG{__WARN__} = sub { $warning = shift; };
+
+    eval {remove_trace(); };
+    like ($warning, qr/uninitialized value/, "remove_trace() restored after eval test complete");
+}
 for ($default, $pl, $pm){
     eval { unlink $_; };
     ok (! $@, "$_ test file unlinked successfully");

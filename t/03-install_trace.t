@@ -5,7 +5,7 @@ use warnings;
 
 use File::Copy;
 
-use Test::More tests => 222;
+use Test::More tests => 224;
 
 BEGIN {
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
@@ -110,6 +110,20 @@ $@ = '';
 
     ok (@base == @in_pm || @base == @in_pm + 1, "with *.pm and *.pl extension, files are correct");
 }
+{
+    $ENV{EVAL_TEST} = 1;
+    eval { install_trace(); };
+    like ($@, qr/can't load Devel::Examine::Subs/, "install_trace() dies if there is an eval error");
+
+    delete $ENV{EVAL_TEST};
+
+    my $warning;
+    $SIG{__WARN__} = sub { $warning = shift; };
+
+    eval {install_trace(); };
+    like ($warning, qr/uninitialized value/, "install_trace() restored after eval test complete");
+}
+
 
 
 __END__

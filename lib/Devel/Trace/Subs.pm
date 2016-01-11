@@ -131,6 +131,8 @@ sub install_trace {
         Devel::Examine::Subs->import();
     };
 
+    $@ = 1 if $ENV{EVAL_TEST}; # for test coverage
+
     if ($@){
         die "can't load Devel::Examine::Subs!: $@";
     }
@@ -167,6 +169,8 @@ sub remove_trace {
         require Devel::Examine::Subs;
         Devel::Examine::Subs->import();
     };
+
+    $@ = 1 if $ENV{EVAL_TEST}; # for test coverage
 
     if ($@){
         die "can't load Devel::Examine::Subs!: $@";
