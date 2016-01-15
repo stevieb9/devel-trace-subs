@@ -236,6 +236,9 @@ __END__
 Devel::Trace::Subs - Generate, track, store and print code flow and stack
 traces.
 
+=for html
+<a href="http://travis-ci.org/stevieb9/devel-trace-subs"><img src="https://secure.travis-ci.org/stevieb9/devel-trace-subs.png"/>
+<a href='https://coveralls.io/github/stevieb9/devel-trace-subs?branch=master'><img src='https://coveralls.io/repos/stevieb9/devel-trace-subs/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
 
 =head1 SYNOPSIS
 
@@ -403,14 +406,6 @@ bug as I make changes.
 L<https://github.com/stevieb9/devel-trace-subs>
 
 =head1 BUILD REPORTS
-
-=begin html
-
-<a href="http://travis-ci.org/stevieb9/devel-trace-subs"><img src="https://secure.travis-ci.org/stevieb9/devel-trace-subs.png"/></a>
-
-<a href='https://coveralls.io/github/stevieb9/devel-trace-subs?branch=master'><img src='https://coveralls.io/repos/stevieb9/devel-trace-subs/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
-
-=end html
 
 CPAN Testers: L<http://matrix.cpantesters.org/?dist=Devel-Trace-Subs>
 
