@@ -20,7 +20,7 @@ WriteMakefile(
         'meta-spec' => { version => 2 },
         resources => {
             bugtracker => {
-                web => 'https://github.com/stevieb9/mock-sub/issues',
+                web => 'https://github.com/stevieb9/devel-trace-subs/issues',
             },
             repository => {
                 type => 'git',
