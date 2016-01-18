@@ -110,6 +110,7 @@ $@ = '';
 
     ok (@base == @in_pm || @base == @in_pm + 1, "with *.pm and *.pl extension, files are correct");
 }
+
 {
     $ENV{EVAL_TEST} = 1;
     eval { install_trace(); };

@@ -1,5 +1,10 @@
 Revision history for Devel-Trace-Subs
 
+0.22    2016-01-18
+        - no functional code changes
+        - bumped prereq of Devel::Examine::Subs to 1.61 due to bug introduced
+          into previous version, breaking tests
+
 0.21    2016-01-04
         - no functional code changes
         - modified tests to work with DES 1.55 through 1.58 (CPAN Testers
