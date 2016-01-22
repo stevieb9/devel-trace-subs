@@ -1,5 +1,6 @@
 Revision history for Devel-Trace-Subs
 
+
 0.22    2016-01-18
         - no functional code changes
         - bumped prereq of Devel::Examine::Subs to 1.61 due to bug introduced

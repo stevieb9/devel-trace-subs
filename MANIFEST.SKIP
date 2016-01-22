@@ -27,3 +27,4 @@ README.bak$
 examples/
 .bak$
 .iml$
+^\w+.list$
