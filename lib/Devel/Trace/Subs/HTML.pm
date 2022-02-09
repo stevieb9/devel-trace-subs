@@ -7,7 +7,7 @@ use Data::Dumper;
 use Exporter;
 use HTML::Template;
 
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(html);
