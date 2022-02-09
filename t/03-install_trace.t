@@ -5,9 +5,18 @@ use warnings;
 
 use File::Copy;
 
-use Test::More tests => 224;
+use Test::More;
 
 BEGIN {
+    eval {
+        require Devel::Examine::Subs;
+        Devel::Examine::Subs->import();
+    };
+
+    if ($@){
+        plan skip_all => "Devel::Examine::Subs isn't installed. Can't run install_trace() tests";
+    }
+
     use_ok( 'Devel::Trace::Subs' ) || print "Bail out!\n";
 }
 
@@ -125,6 +134,7 @@ $@ = '';
     like ($warning, qr/uninitialized value/, "install_trace() restored after eval test complete");
 }
 
+done_testing();
 
 
 __END__

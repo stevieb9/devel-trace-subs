@@ -134,7 +134,7 @@ sub install_trace {
     $@ = 1 if $ENV{EVAL_TEST}; # for test coverage
 
     if ($@){
-        die "can't load Devel::Examine::Subs!: $@";
+        die "Devel::Examine::Subs isn't installed. Can't run install_trace(): $@";
     }
 
     my %p = @_;
@@ -173,7 +173,7 @@ sub remove_trace {
     $@ = 1 if $ENV{EVAL_TEST}; # for test coverage
 
     if ($@){
-        die "can't load Devel::Examine::Subs!: $@";
+        die "Devel::Examine::Subs isn't installed. Can't run remove_trace(): $@";
     }
    
     my %p = @_;
@@ -256,11 +256,13 @@ From anywhere (typically near the end of the calling script) dump the output
 
     trace_dump();
 
-Automate the installation into a file (or all files in a directory)
+Automate the installation into a file (or all files in a directory). Requires
+L<Devel::Examine::Subs> to be installed.
 
     install_trace(file => 'filename'); # or directory, or 'Module::Name'
 
-Remove the effects of install_trace()
+Remove the effects of install_trace(). Requires L<Devel::Examine::Subs> to be
+installed.
 
     remove_trace(file => 'filename')
 
