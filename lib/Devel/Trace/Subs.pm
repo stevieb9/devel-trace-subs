@@ -236,8 +236,8 @@ __END__
 Devel::Trace::Subs - Generate, track, store and print code flow and stack traces
 
 =for html
-<a href="https://github.com/stevieb9/devel-examine-subs/actions"><img src="https://github.com/stevieb9/devel-examine-subs/workflows/CI/badge.svg"/></a>
-<a href='https://coveralls.io/github/stevieb9/devel-examine-subs?branch=master'><img src='https://coveralls.io/repos/stevieb9/devel-examine-subs/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+<a href="https://github.com/stevieb9/devel-trace-subs/actions"><img src="https://github.com/stevieb9/devel-trace-subs/workflows/CI/badge.svg"/></a>
+<a href='https://coveralls.io/github/stevieb9/devel-trace-subs?branch=master'><img src='https://coveralls.io/repos/stevieb9/devel-trace-subs/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
 
 =head1 SYNOPSIS
 

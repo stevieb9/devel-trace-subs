@@ -5,6 +5,7 @@ Revision history for Devel-Trace-Subs
     - Code reformatting
     - Fix install/remove tests due to updated Devel::Examine::Subs
       error string changes
+    - Fix CI badge links (were pointing to devel-examine-subs)
 
 0.23    2022-02-09
     - Devel::Examine::Subs is no longer a prereq. install_trace() and
