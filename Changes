@@ -2,6 +2,8 @@ Revision history for Devel-Trace-Subs
 
 0.25 UNREL
     - Add install of Devel::Examine::Subs in CI
+    - Remove erroneous CI badge links in sub modules
+    - Remove unwanted/unneeded POD sections
 
 0.24    2022-02-09
     - Removed Travis CI config file
