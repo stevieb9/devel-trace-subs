@@ -127,6 +127,11 @@ __END__
 
 Devel::Trace::Subs::Text
 
+=for html
+<a href="https://github.com/stevieb9/devel-examine-subs/actions"><img src="https://github.com/stevieb9/devel-examine-subs/workflows/CI/badge.svg"/></a>
+<a href='https://coveralls.io/github/stevieb9/devel-examine-subs?branch=master'><img src='https://coveralls.io/repos/stevieb9/devel-examine-subs/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+
+
 =head1 FUNCTIONS
 
 =head2 C<text(file => 'file.ext', want => 'string', data => HREF)>
