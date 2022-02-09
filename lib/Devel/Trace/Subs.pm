@@ -314,13 +314,13 @@ program is having trouble, but the program itself isn't outputting anything usef
 
 Parameters:
 
-    want    => 'flow'|'stack'
+    want => 'flow'|'stack'
 
 Optional, String: Display either the code flow or stack trace.
 
 Default: None (display both flow and trace information).
 
-    type    => 'html'
+    type => 'html'
 
 Optional, String: The display output format. Only valid value is C<html>.
 
