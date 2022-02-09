@@ -292,7 +292,7 @@ C<trace, trace_dump, install_trace, remove_trace>
 
 =head2 C<trace>
 
-Parameters: None
+Takes no parameters.
 
 In order to enable tracing, you must set C<$ENV{DTS_ENABLE}> to a true value
 somewhere in the call stack (preferably in the calling script). Simply set to
@@ -310,56 +310,70 @@ If you set C<$ENV{DTS_FLUSH_FLOW}> to a true value, we'll print to STDOUT a sing
 line of code flow during each C<trace()> call. This helps in figuring out where a
 program is having trouble, but the program itself isn't outputting anything useful.
 
-=head2 C<trace_dump>
+=head2 C<trace_dump(%params)>
 
-Dumps the output of the collected data.
+Parameters:
 
-All of the following parameters are optional.
+    want    => 'flow'|'stack'
 
-C<want =E<gt> 'string'>, C<type =E<gt> 'html'>,
-C<file =E<gt> 'file.ext'>
+Optional, String: Display either the code flow or stack trace.
 
-C<want>: Takes either C<'flow'> or C<'stack'>, and will output the respective
-data collection. If this parameter is omitted, both code flow and stack trace
-information is dumped.
+Default: None (display both flow and trace information).
 
-C<type>: Has only a single value, C<'html'>. This will dump the output in HTML
-format.
+    type    => 'html'
 
-C<file>: Takes the name of a file as a parameter. The dump will write output
-to the file specified. The program will C<die> if the file can not be opened
-for writing.
+Optional, String: The display output format. Only valid value is C<html>.
+
+Default: None (Display output in plain text).
+
+    file => 'filename.ext'
+
+Optional, String: If sent in, we'll write the output to the file specified
+instead of C<STDOUT>. We'll C<die()> if the file can't be opened for writing.
+
+Default: None (Write output to C<STDOUT>).
 
 =head2 C<install_trace>
 
 Automatically injects the necessary code into Perl files to facilitate stack
-tracing.
+tracing. Requires L<Devel::Examine::Subs> to be installed.
 
 Parameters:
 
-C<file =E<gt> 'filename'> - Mandatory: 'filename' can be the name of a single
-file, a directory, or even a 'Module::Name'. If the filename is a directory,
-we'll iterate recursively through the directory, and make the changes to all
-C<.pl> and C<.pm> files underneath of it (by default). If filename is a 
-'Module::Name', we'll load the file for that module dynamically, and modify it. 
+    file => 'filename.ext'
+
+Mandatory, String: 'filename' can be the name of a single file, a directory, or even a
+'Module::Name'. If the filename is a directory, we'll iterate recursively
+through the directory, and make the changes to all C<.pl> and C<.pm> files
+underneath of it (by default). If filename is a 'Module::Name', we'll load the
+file for that module dynamically, and modify it.
+
 CAUTION: this will edit live production files.
 
-C<extensions =E<gt> ['*.pl', '*.pm']> - Optional: By default, we change all C<*.pm>
-and C<*.pl> files. Specify only the extensions you want by adding them into this
-array reference. Anything that C<File::Find::Rule::name()> accepts can be passed in here.
+    extensions => ['*.pl', '*.pm']
 
-C<inject =E<gt> ['your code here;', 'more code;']> - The lines of code supplied
-here will override the default. Note that C<remove_trace()> will not remove
-these lines, and for uninstall, you'll have to manually delete them.
+Optional, Array reference: By default, we change all C<*.pm> and C<*.pl> files.
+Specify only the extensions you want by adding them into this array reference.
+Anything that C<File::Find::Rule::name()> accepts can be passed in here.
+
+    inject => ['your code here;', 'more code;']
+
+Optional, Array refernce of strings: The lines of code supplied here will
+override the default. Note that C<remove_trace()> will not remove these lines,
+and for uninstall, you'll have to manually delete them.
 
 =head2 C<remove_trace>
 
 Automatically remove all remnants of this module from a file or files, that were
-added by this module's C<install_trace()> function.
+added by this module's C<install_trace()> function. Requires L<Devel::Examine::Subs>
+to be installed.
 
-Parameters: C<file =E<gt> 'filename'>
+Parameters:
 
-Where 'filename' can be the name of a file, a directory or a 'Module::Name'.
+    file => 'filename.ext'
+
+Optional, String: 'filename' can be the name of a file, a directory or a
+'Module::Name'.
 
 =cut
 
@@ -434,7 +448,7 @@ L<http://search.cpan.org/dist/Devel-Trace-Subs/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2016 Steve Bertrand.
+Copyright 2022 Steve Bertrand.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published

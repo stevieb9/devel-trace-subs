@@ -28,4 +28,4 @@ examples/
 .bak$
 .iml$
 ^\w+.list$
-^\.github/
+.github/

@@ -4,6 +4,7 @@ Revision history for Devel-Trace-Subs
     - Devel::Examine::Subs is no longer a prereq. install_trace() and
       remove_trace() will die if it isn't available
     - Added support for Github Actions and removed Travis-CI
+    - POD updates
 
 0.22    2016-01-18
     - no functional code changes
