@@ -14,11 +14,11 @@ our $VERSION = '0.24';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
-                    trace
-                    trace_dump
-                    install_trace
-                    remove_trace
-                );
+    trace
+    trace_dump
+    install_trace
+    remove_trace
+);
 
 $SIG{INT} = sub { 'this ensures END runs if ^C is pressed'; };
 
@@ -35,9 +35,9 @@ sub trace {
     my $flow_count = ++$ENV{DTS_FLOW_COUNT};
 
     my $flow = {
-                 name => $flow_count,
-                 value => (caller(1))[3] || 'main()'
-               };
+        name => $flow_count,
+        value => (caller(1))[3] || 'main()'
+    };
 
     push @{$data->{flow}}, $flow;
 
@@ -139,9 +139,9 @@ sub install_trace {
 
     my %p = @_;
 
-    my $file = $p{file};
-    my $extensions = $p{extensions};
-    my $inject = $p{inject};
+    my $file        = $p{file};
+    my $extensions  = $p{extensions};
+    my $inject      = $p{inject};
 
     my $des_use = Devel::Examine::Subs->new(file => $file,);
 
@@ -152,9 +152,9 @@ sub install_trace {
     $des_use->inject(inject_use => _inject_use());
 
     my $des = Devel::Examine::Subs->new(
-                                        file => $file,
-                                        extensions => $extensions,
-                                     );
+        file        => $file,
+        extensions  => $extensions,
+    );
 
     $inject = $p{inject} || _inject_code();
 
@@ -176,8 +176,8 @@ sub remove_trace {
         die "Devel::Examine::Subs isn't installed. Can't run remove_trace(): $@";
     }
    
-    my %p = @_;
-    my $file = $p{file};
+    my %p       = @_;
+    my $file    = $p{file};
 
     my $des = Devel::Examine::Subs->new( file => $file ); 
 
@@ -203,7 +203,7 @@ sub _env {
 }
 sub _store {
 
-    my $data = shift;
+    my ($data) = @_;
 
     my $store = "DTS_" . join('_', ($$ x 3)) . ".dat";
 

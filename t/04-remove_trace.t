@@ -74,7 +74,7 @@ my $dir = 't/ext';
 {
     $ENV{EVAL_TEST} = 1;
     eval { remove_trace(); };
-    like ($@, qr/can't load Devel::Examine::Subs/, "remove_trace() dies if there is an eval error");
+    like ($@, qr/Devel::Examine::Subs isn't installed/, "remove_trace() dies if there is an eval error");
 
     delete $ENV{EVAL_TEST};
 

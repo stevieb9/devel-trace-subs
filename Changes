@@ -2,6 +2,9 @@ Revision history for Devel-Trace-Subs
 
 0.24 UNREL
     - Removed Travis CI config file
+    - Code reformatting
+    - Fix install/remove tests due to updated Devel::Examine::Subs
+      error string changes
 
 0.23    2022-02-09
     - Devel::Examine::Subs is no longer a prereq. install_trace() and
