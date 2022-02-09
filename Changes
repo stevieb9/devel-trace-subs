@@ -1,6 +1,6 @@
 Revision history for Devel-Trace-Subs
 
-0.24 UNREL
+0.24    2022-02-09
     - Removed Travis CI config file
     - Code reformatting
     - Fix install/remove tests due to updated Devel::Examine::Subs
