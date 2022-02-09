@@ -24,3 +24,4 @@ t/pod.t
 t/sample.pl
 t/trace_sample.pl
 xt/boilerplate.t
+.github/workflows/github_ci_default.yml
