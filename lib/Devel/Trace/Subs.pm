@@ -10,7 +10,7 @@ use Exporter;
 use Storable;
 use Symbol qw(delete_package);
 
-our $VERSION = '0.23';
+our $VERSION = '0.24';
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(

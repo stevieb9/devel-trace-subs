@@ -1,5 +1,8 @@
 Revision history for Devel-Trace-Subs
 
+0.24 UNREL
+    -
+
 0.23    2022-02-09
     - Devel::Examine::Subs is no longer a prereq. install_trace() and
       remove_trace() will die if it isn't available
